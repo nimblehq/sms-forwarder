@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.data.service.response
+package co.nimblehq.smsforwarder.data.service.response
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

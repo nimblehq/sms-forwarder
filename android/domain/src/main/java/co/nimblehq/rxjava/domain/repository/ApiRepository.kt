@@ -1,9 +1,9 @@
-package co.nimblehq.rxjava.domain.repository
+package co.nimblehq.smsforwarder.domain.repository
 
-import co.nimblehq.rxjava.data.service.ApiService
-import co.nimblehq.rxjava.domain.data.Data
-import co.nimblehq.rxjava.domain.data.toDataList
-import co.nimblehq.rxjava.domain.transform
+import co.nimblehq.smsforwarder.data.service.ApiService
+import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.toDataList
+import co.nimblehq.smsforwarder.domain.transform
 import io.reactivex.Single
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.domain.data.error
+package co.nimblehq.smsforwarder.domain.data.error
 
-import co.nimblehq.rxjava.data.service.error.JsonApiException
+import co.nimblehq.smsforwarder.data.service.error.JsonApiException
 
 open class AppError(
     override val cause: Throwable?

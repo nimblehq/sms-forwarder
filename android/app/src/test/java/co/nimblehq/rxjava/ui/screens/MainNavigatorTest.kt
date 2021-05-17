@@ -1,15 +1,15 @@
-package co.nimblehq.rxjava.ui.screens
+package co.nimblehq.smsforwarder.ui.screens
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import co.nimblehq.rxjava.R
-import co.nimblehq.rxjava.domain.test.MockUtil
-import co.nimblehq.rxjava.ui.base.NavigationEvent
-import co.nimblehq.rxjava.ui.screens.home.HomeFragmentDirections
-import co.nimblehq.rxjava.ui.screens.second.SecondBundle
-import co.nimblehq.rxjava.ui.screens.second.SecondFragmentDirections
-import co.nimblehq.rxjava.ui.screens.webview.WebViewBundle
+import co.nimblehq.smsforwarder.R
+import co.nimblehq.smsforwarder.domain.test.MockUtil
+import co.nimblehq.smsforwarder.ui.base.NavigationEvent
+import co.nimblehq.smsforwarder.ui.screens.home.HomeFragmentDirections
+import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
+import co.nimblehq.smsforwarder.ui.screens.second.SecondFragmentDirections
+import co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle
 import com.nhaarman.mockitokotlin2.verify
 import org.amshove.kluent.*
 import org.junit.Before

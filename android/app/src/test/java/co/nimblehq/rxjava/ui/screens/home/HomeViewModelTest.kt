@@ -1,10 +1,10 @@
-package co.nimblehq.rxjava.ui.screens.home
+package co.nimblehq.smsforwarder.ui.screens.home
 
-import co.nimblehq.rxjava.domain.data.error.DataError
-import co.nimblehq.rxjava.domain.test.MockUtil
-import co.nimblehq.rxjava.domain.usecase.GetExampleDataUseCase
-import co.nimblehq.rxjava.ui.base.NavigationEvent
-import co.nimblehq.rxjava.ui.screens.second.SecondBundle
+import co.nimblehq.smsforwarder.domain.data.error.DataError
+import co.nimblehq.smsforwarder.domain.test.MockUtil
+import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
+import co.nimblehq.smsforwarder.ui.base.NavigationEvent
+import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
 import com.nhaarman.mockitokotlin2.any
 import io.reactivex.Single
 import org.amshove.kluent.*

@@ -1,8 +1,8 @@
-package co.nimblehq.rxjava.domain
+package co.nimblehq.smsforwarder.domain
 
-import co.nimblehq.rxjava.data.service.error.JsonApiException
-import co.nimblehq.rxjava.data.service.error.NoConnectivityException
-import co.nimblehq.rxjava.data.service.error.UnknownException
+import co.nimblehq.smsforwarder.data.service.error.JsonApiException
+import co.nimblehq.smsforwarder.data.service.error.NoConnectivityException
+import co.nimblehq.smsforwarder.data.service.error.UnknownException
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import org.junit.Test

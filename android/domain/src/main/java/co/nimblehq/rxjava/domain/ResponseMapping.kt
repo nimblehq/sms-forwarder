@@ -1,10 +1,10 @@
-package co.nimblehq.rxjava.domain
+package co.nimblehq.smsforwarder.domain
 
-import co.nimblehq.rxjava.data.service.error.JsonApiException
-import co.nimblehq.rxjava.data.service.error.NoConnectivityException
-import co.nimblehq.rxjava.data.service.error.UnknownException
-import co.nimblehq.rxjava.data.service.providers.MoshiBuilderProvider
-import co.nimblehq.rxjava.data.service.response.ErrorResponse
+import co.nimblehq.smsforwarder.data.service.error.JsonApiException
+import co.nimblehq.smsforwarder.data.service.error.NoConnectivityException
+import co.nimblehq.smsforwarder.data.service.error.UnknownException
+import co.nimblehq.smsforwarder.data.service.providers.MoshiBuilderProvider
+import co.nimblehq.smsforwarder.data.service.response.ErrorResponse
 import io.reactivex.Single
 import retrofit2.Response
 import java.io.InterruptedIOException

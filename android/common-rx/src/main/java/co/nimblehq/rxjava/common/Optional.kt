@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.common
+package co.nimblehq.smsforwarder.common
 
 import java.util.*
 

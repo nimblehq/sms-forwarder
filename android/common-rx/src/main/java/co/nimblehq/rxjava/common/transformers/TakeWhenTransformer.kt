@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.common.transformers
+package co.nimblehq.smsforwarder.common.transformers
 
 import io.reactivex.Observable
 import io.reactivex.ObservableSource

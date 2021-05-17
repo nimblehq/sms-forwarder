@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.data.service.response
+package co.nimblehq.smsforwarder.data.service.response
 
 data class ExampleResponse(val data: ExampleDataResponse)
 

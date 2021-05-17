@@ -1,7 +1,7 @@
-package co.nimblehq.rxjava.domain.repository
+package co.nimblehq.smsforwarder.domain.repository
 
-import co.nimblehq.rxjava.data.service.ApiService
-import co.nimblehq.rxjava.domain.test.MockUtil
+import co.nimblehq.smsforwarder.data.service.ApiService
+import co.nimblehq.smsforwarder.domain.test.MockUtil
 import io.reactivex.Single
 import org.amshove.kluent.When
 import org.amshove.kluent.calling

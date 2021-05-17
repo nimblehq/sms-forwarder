@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.extension
+package co.nimblehq.smsforwarder.extension
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

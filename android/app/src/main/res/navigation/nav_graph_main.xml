@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="co.nimblehq.rxjava.ui.screens.home.HomeFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.home.HomeFragment"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -22,12 +22,12 @@
 
     <fragment
         android:id="@+id/secondFragment"
-        android:name="co.nimblehq.rxjava.ui.screens.second.SecondFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.second.SecondFragment"
         tools:layout="@layout/fragment_second">
 
         <argument
             android:name="bundle"
-            app:argType="co.nimblehq.rxjava.ui.screens.second.SecondBundle" />
+            app:argType="co.nimblehq.smsforwarder.ui.screens.second.SecondBundle" />
 
         <action
             android:id="@+id/action_secondFragment_to_webViewFragment"
@@ -41,12 +41,12 @@
 
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="co.nimblehq.rxjava.ui.screens.webview.WebViewFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.webview.WebViewFragment"
         tools:layout="@layout/fragment_webview">
 
         <argument
             android:name="bundle"
-            app:argType="co.nimblehq.rxjava.ui.screens.webview.WebViewBundle" />
+            app:argType="co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle" />
 
     </fragment>
 

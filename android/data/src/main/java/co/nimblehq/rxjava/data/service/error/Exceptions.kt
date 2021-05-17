@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.data.service.error
+package co.nimblehq.smsforwarder.data.service.error
 
-import co.nimblehq.rxjava.data.service.response.ErrorResponse
+import co.nimblehq.smsforwarder.data.service.response.ErrorResponse
 import retrofit2.HttpException
 import retrofit2.Response
 

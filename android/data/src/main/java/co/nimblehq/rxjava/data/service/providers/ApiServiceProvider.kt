@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.data.service.providers
+package co.nimblehq.smsforwarder.data.service.providers
 
-import co.nimblehq.rxjava.data.service.ApiService
+import co.nimblehq.smsforwarder.data.service.ApiService
 import retrofit2.Retrofit
 
 class ApiServiceProvider {
