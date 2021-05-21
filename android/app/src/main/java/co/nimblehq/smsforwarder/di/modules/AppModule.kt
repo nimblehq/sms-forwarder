@@ -1,7 +1,7 @@
 package co.nimblehq.smsforwarder.di.modules
 
 import android.content.Context
-import co.nimblehq.smsforwarder.TemplateApplication
+import co.nimblehq.smsforwarder.SmsForwarderApplication
 import co.nimblehq.smsforwarder.domain.schedulers.BaseSchedulerProvider
 import co.nimblehq.smsforwarder.domain.schedulers.SchedulerProvider
 import co.nimblehq.smsforwarder.ui.common.Toaster
@@ -16,7 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 class AppModule {
 
     @Provides
-    fun provideContext(application: TemplateApplication): Context = application
+    fun provideContext(application: SmsForwarderApplication): Context = application
 
     @Provides
     fun toaster(@ApplicationContext context: Context): Toaster = Toaster(context)
