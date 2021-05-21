@@ -1,8 +1,8 @@
-package co.nimblehq.rxjava.domain.test
+package co.nimblehq.smsforwarder.domain.test
 
-import co.nimblehq.rxjava.data.service.response.*
-import co.nimblehq.rxjava.domain.data.Data
-import co.nimblehq.rxjava.domain.data.toDataList
+import co.nimblehq.smsforwarder.data.service.response.*
+import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.toDataList
 
 object MockUtil {
 

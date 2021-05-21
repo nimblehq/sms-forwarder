@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.data.service.common.secrets
+package co.nimblehq.smsforwarder.data.service.common.secrets
 
 class ClientSecretImpl : ClientSecret {
     override val value: String

@@ -1,8 +1,8 @@
-package co.nimblehq.rxjava.ui.screens.second
+package co.nimblehq.smsforwarder.ui.screens.second
 
-import co.nimblehq.rxjava.domain.test.MockUtil
-import co.nimblehq.rxjava.ui.base.NavigationEvent
-import co.nimblehq.rxjava.ui.screens.webview.WebViewBundle
+import co.nimblehq.smsforwarder.domain.test.MockUtil
+import co.nimblehq.smsforwarder.ui.base.NavigationEvent
+import co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle
 import org.junit.Before
 import org.junit.Test
 

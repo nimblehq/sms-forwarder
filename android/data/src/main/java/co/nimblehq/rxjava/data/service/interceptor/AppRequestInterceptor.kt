@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.data.service.interceptor
+package co.nimblehq.smsforwarder.data.service.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

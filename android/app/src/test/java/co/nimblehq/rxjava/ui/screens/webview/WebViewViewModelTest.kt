@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.ui.screens.webview
+package co.nimblehq.smsforwarder.ui.screens.webview
 
 import org.junit.Before
 import org.junit.Test

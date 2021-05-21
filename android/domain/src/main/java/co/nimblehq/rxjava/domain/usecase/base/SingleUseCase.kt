@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.domain.usecase.base
+package co.nimblehq.smsforwarder.domain.usecase.base
 
-import co.nimblehq.rxjava.domain.data.error.AppError
+import co.nimblehq.smsforwarder.domain.data.error.AppError
 import io.reactivex.Scheduler
 import io.reactivex.Single
 

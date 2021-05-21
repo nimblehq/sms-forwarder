@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.data.service.providers
+package co.nimblehq.smsforwarder.data.service.providers
 
-import co.nimblehq.rxjava.data.service.common.secrets.Secrets
+import co.nimblehq.smsforwarder.data.service.common.secrets.Secrets
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit

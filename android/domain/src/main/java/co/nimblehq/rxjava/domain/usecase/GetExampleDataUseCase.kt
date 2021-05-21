@@ -1,10 +1,10 @@
-package co.nimblehq.rxjava.domain.usecase
+package co.nimblehq.smsforwarder.domain.usecase
 
-import co.nimblehq.rxjava.domain.data.Data
-import co.nimblehq.rxjava.domain.data.error.DataError.GetDataError
-import co.nimblehq.rxjava.domain.repository.ApiRepository
-import co.nimblehq.rxjava.domain.schedulers.BaseSchedulerProvider
-import co.nimblehq.rxjava.domain.usecase.base.SingleUseCase
+import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.error.DataError.GetDataError
+import co.nimblehq.smsforwarder.domain.repository.ApiRepository
+import co.nimblehq.smsforwarder.domain.schedulers.BaseSchedulerProvider
+import co.nimblehq.smsforwarder.domain.usecase.base.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 

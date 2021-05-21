@@ -1,6 +1,6 @@
-package co.nimblehq.rxjava.data.service
+package co.nimblehq.smsforwarder.data.service
 
-import co.nimblehq.rxjava.data.service.response.ExampleResponse
+import co.nimblehq.smsforwarder.data.service.response.ExampleResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET

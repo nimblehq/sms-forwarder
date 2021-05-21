@@ -1,7 +1,7 @@
-package co.nimblehq.rxjava.domain.data
+package co.nimblehq.smsforwarder.domain.data
 
 import android.os.Parcelable
-import co.nimblehq.rxjava.data.service.response.ExampleResponse
+import co.nimblehq.smsforwarder.data.service.response.ExampleResponse
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

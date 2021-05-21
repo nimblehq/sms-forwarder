@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.data.service.providers
+package co.nimblehq.smsforwarder.data.service.providers
 
 import com.squareup.moshi.Moshi
 import retrofit2.Converter

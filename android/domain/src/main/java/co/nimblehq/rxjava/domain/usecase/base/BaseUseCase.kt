@@ -1,9 +1,9 @@
-package co.nimblehq.rxjava.domain.usecase.base
+package co.nimblehq.smsforwarder.domain.usecase.base
 
-import co.nimblehq.rxjava.data.service.error.NoConnectivityException
-import co.nimblehq.rxjava.domain.BuildConfig
-import co.nimblehq.rxjava.domain.data.error.AppError
-import co.nimblehq.rxjava.domain.data.error.NoConnectivityError
+import co.nimblehq.smsforwarder.data.service.error.NoConnectivityException
+import co.nimblehq.smsforwarder.domain.BuildConfig
+import co.nimblehq.smsforwarder.domain.data.error.AppError
+import co.nimblehq.smsforwarder.domain.data.error.NoConnectivityError
 import okhttp3.internal.http2.StreamResetException
 import java.io.IOException
 

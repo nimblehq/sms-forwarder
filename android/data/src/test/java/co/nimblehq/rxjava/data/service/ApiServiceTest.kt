@@ -1,9 +1,9 @@
-package co.nimblehq.rxjava.data.service
+package co.nimblehq.smsforwarder.data.service
 
-import co.nimblehq.rxjava.data.service.providers.ApiServiceProvider
-import co.nimblehq.rxjava.data.service.providers.ConverterFactoryProvider
-import co.nimblehq.rxjava.data.service.providers.MoshiBuilderProvider
-import co.nimblehq.rxjava.data.service.providers.RetrofitProvider
+import co.nimblehq.smsforwarder.data.service.providers.ApiServiceProvider
+import co.nimblehq.smsforwarder.data.service.providers.ConverterFactoryProvider
+import co.nimblehq.smsforwarder.data.service.providers.MoshiBuilderProvider
+import co.nimblehq.smsforwarder.data.service.providers.RetrofitProvider
 import okhttp3.OkHttpClient
 import org.junit.Assert
 import org.junit.Test

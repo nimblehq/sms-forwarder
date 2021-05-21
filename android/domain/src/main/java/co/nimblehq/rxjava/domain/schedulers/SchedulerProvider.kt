@@ -1,4 +1,4 @@
-package co.nimblehq.rxjava.domain.schedulers
+package co.nimblehq.smsforwarder.domain.schedulers
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

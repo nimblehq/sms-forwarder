@@ -1,9 +1,9 @@
-package co.nimblehq.rxjava.domain.usecase
+package co.nimblehq.smsforwarder.domain.usecase
 
-import co.nimblehq.rxjava.domain.data.error.DataError
-import co.nimblehq.rxjava.domain.repository.ApiRepository
-import co.nimblehq.rxjava.domain.schedulers.TrampolineSchedulerProvider
-import co.nimblehq.rxjava.domain.test.MockUtil
+import co.nimblehq.smsforwarder.domain.data.error.DataError
+import co.nimblehq.smsforwarder.domain.repository.ApiRepository
+import co.nimblehq.smsforwarder.domain.schedulers.TrampolineSchedulerProvider
+import co.nimblehq.smsforwarder.domain.test.MockUtil
 import io.reactivex.Single
 import org.amshove.kluent.*
 import org.junit.Before
