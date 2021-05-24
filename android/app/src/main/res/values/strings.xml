@@ -5,4 +5,7 @@
     <string name="error_email_invalid">Invalid email</string>
     <string name="error_generic">Unexpected error</string>
     <string name="error_password_invalid">Password length should be at least %s chars</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_submit_button">Login</string>
 </resources>

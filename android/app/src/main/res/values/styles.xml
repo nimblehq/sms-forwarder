@@ -1,17 +1,37 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:statusBarColor">@color/colorStatusBar</item>
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
 
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <!-- Default text style for TextView, please adjust for your own specific usage -->
         <item name="android:textViewStyle">@style/Widget.Template.TextView</item>
+    </style>
+
+    <style name="AppTextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextInputLayoutHintText</item>
+        <item name="errorTextAppearance">@style/TextInputLayoutErrorText</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="AppTextInputEditText">
+        <item name="errorTextAppearance">@style/TextInputLayoutErrorText</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="TextInputLayoutHintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextInputLayoutErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textColor">@color/red_alizarin</item>
     </style>
 
 </resources>

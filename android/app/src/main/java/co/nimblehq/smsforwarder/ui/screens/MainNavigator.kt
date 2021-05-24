@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.ui.base.*
 import co.nimblehq.smsforwarder.ui.screens.home.HomeFragmentDirections
+import co.nimblehq.smsforwarder.ui.screens.login.LoginFragmentDirections
 import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
 import co.nimblehq.smsforwarder.ui.screens.second.SecondFragmentDirections
 import co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle
@@ -19,9 +20,16 @@ class MainNavigatorImpl @Inject constructor(
 
     override fun navigate(event: NavigationEvent) {
         when (event) {
+            is NavigationEvent.Filter -> navigateToFilter()
             is NavigationEvent.Second -> navigateToSecond(event.bundle)
             is NavigationEvent.WebView -> navigateToWebView(event.bundle)
         }
+    }
+
+    private fun navigateToFilter() {
+        findNavController()?.navigate(
+            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        )
     }
 
     private fun navigateToSecond(bundle: SecondBundle) {
