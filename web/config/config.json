@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "sms-forwarder",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "charset": "utf8",
+    "logging": false
+  },
+  "production": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "sms-forwarder",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": true
+    },
+    "charset": "utf8",
+    "logging": false
+  }
+}
