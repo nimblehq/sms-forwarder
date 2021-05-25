@@ -1,5 +1,6 @@
 package co.nimblehq.smsforwarder.ui.screens.home
 
+import android.Manifest
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -12,6 +13,8 @@ import co.nimblehq.smsforwarder.lib.IsLoading
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
 import co.nimblehq.smsforwarder.ui.screens.MainNavigator
+import com.tbruyelle.rxpermissions2.Permission
+import com.tbruyelle.rxpermissions2.RxPermissions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -20,6 +23,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     @Inject
     lateinit var navigator: MainNavigator
+
+    @Inject
+    lateinit var rxPermissions: RxPermissions
 
     private val viewModel by viewModels<HomeViewModel>()
 
@@ -65,6 +71,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.error bindTo ::displayError
         viewModel.data bindTo ::bindData
         viewModel.navigator bindTo navigator::navigate
+
+        requestReceiveSmsPermission()
+    }
+
+    private fun requestReceiveSmsPermission() {
+        rxPermissions
+            .requestEach(Manifest.permission.RECEIVE_SMS)
+            .subscribe(::handleReceiveSmsPermission)
+            .addToDisposables()
+    }
+
+    private fun handleReceiveSmsPermission(permission: Permission) {
+        when {
+            permission.granted -> {
+                // Granted
+                toaster.display("Permission granted")
+            }
+            permission.shouldShowRequestPermissionRationale -> {
+                // Deny
+                toaster.display("Permission denied")
+            }
+            else -> {
+                // Deny and never ask again
+                toaster.display("Permission never ask again")
+            }
+        }
     }
 
     private fun setupDataList() {
