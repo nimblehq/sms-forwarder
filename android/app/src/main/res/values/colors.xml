@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Declaring colors for using in themes/UI component attributes with a meaningful name -->
-    <color name="colorPrimary">@color/blue_free_speech</color>
-    <color name="colorPrimaryDark">@color/blue_tory</color>
-    <color name="colorAccent">@color/red_violet</color>
+    <color name="colorPrimary">@color/orange_red</color>
+    <color name="colorPrimaryDark">@color/purple_violent_violet</color>
+    <color name="colorAccent">@color/red_alizarin</color>
 
     <color name="colorStatusBar">@null</color>
     <color name="colorNavigationBar">@null</color>
+
+    <color name="orange_red">#FA4616</color>
+    <color name="purple_violent_violet">#201547</color>
+    <color name="red_alizarin">#EE2737</color>
 </resources>
