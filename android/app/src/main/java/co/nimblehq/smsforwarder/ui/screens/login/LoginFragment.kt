@@ -21,7 +21,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     @Inject
     lateinit var rxPermissions: RxPermissions
 
-    private val viewModel by viewModels<LoginViewModel>()
+    private val viewModel by viewModels<LoginViewModelImpl>()
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentLoginBinding
         get() = { inflater, container, attachToParent ->
@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun setupView() {
         with(binding) {
             btLogin
-                .subscribeOnClick(viewModel.input::navigateToFilter)
+                .subscribeOnClick(viewModel::navigateToFilter)
                 .addToDisposables()
         }
     }
