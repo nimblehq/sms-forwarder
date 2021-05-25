@@ -7,7 +7,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class TemplateApplication: Application() {
+class SmsForwarderApplication: Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
