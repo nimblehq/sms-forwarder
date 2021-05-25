@@ -20,13 +20,13 @@ class MainNavigatorImpl @Inject constructor(
 
     override fun navigate(event: NavigationEvent) {
         when (event) {
-            is NavigationEvent.Filter -> navigateToFilter()
+            is NavigationEvent.Home -> navigateToHome()
             is NavigationEvent.Second -> navigateToSecond(event.bundle)
             is NavigationEvent.WebView -> navigateToWebView(event.bundle)
         }
     }
 
-    private fun navigateToFilter() {
+    private fun navigateToHome() {
         findNavController()?.navigate(
             LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         )

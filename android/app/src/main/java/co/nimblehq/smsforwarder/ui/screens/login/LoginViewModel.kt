@@ -13,6 +13,6 @@ class LoginViewModel @ViewModelInject constructor() : BaseViewModel(), Input {
     val input: Input = this
 
     override fun navigateToFilter() {
-        _navigator.onNext(NavigationEvent.Filter)
+        _navigator.onNext(NavigationEvent.Home)
     }
 }
