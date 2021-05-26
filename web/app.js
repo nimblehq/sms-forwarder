@@ -1,12 +1,10 @@
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-
-var app = express();
+var express = require('express'),
+  logger = require('morgan'),
+  cookieParser = require('cookie-parser'),
+  expressValidator = require('express-validator'),
+  app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -14,11 +12,21 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use(expressValidator({
+  customSanitizers: {
+    toLowerCase: function (value) {
+      return value.toLowerCase();
+    }
+  }
+}));
+
+app.use('/', require('./routes/index'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
