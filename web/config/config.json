@@ -1,4 +1,11 @@
 {
+  "mail": {
+    "user": "",
+    "pass": "",
+    "host": "",
+    "port": 0,
+    "secure": true
+  },
   "development": {
     "username": "postgres",
     "password": "123456",
