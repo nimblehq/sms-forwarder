@@ -18,9 +18,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     @Inject
     lateinit var navigator: MainNavigator
 
-    @Inject
-    lateinit var rxPermissions: RxPermissions
-
     private val viewModel by viewModels<LoginViewModelImpl>()
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentLoginBinding
