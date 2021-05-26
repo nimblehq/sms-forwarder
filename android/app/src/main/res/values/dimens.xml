@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_margin">24dp</dimen>
+    <dimen name="default_margin_16">16dp</dimen>
+    <dimen name="default_margin_24">24dp</dimen>
+
+    <dimen name="home_add_filter_button_size">50dp</dimen>
 </resources>

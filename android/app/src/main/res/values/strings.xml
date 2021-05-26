@@ -8,6 +8,7 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_submit_button">Login</string>
+    <string name="home_add_filter_button">+</string>
 
     <string name="permission_denied">Permission denied</string>
     <string name="permission_require_title">Notice</string>

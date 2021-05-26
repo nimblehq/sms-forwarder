@@ -40,18 +40,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
     override fun setupView() {
+        showAppBar()
+
         viewLoadingBinding = ViewLoadingBinding.bind(binding.root)
         setupDataList()
 
-        binding.btHomeRefresh
+        binding.btHomeAddFilter
             .subscribeOnClick { viewModel.input.refresh() }
             .addToDisposables()
     }
 
     override fun handleVisualOverlaps() {
         with(binding) {
-            rvHomeData.handleVisualOverlaps(marginInsteadOfPadding = false)
-            btHomeRefresh.handleVisualOverlaps()
+            rvHomeData.handleVisualOverlaps()
+            vHomeBackground.handleVisualOverlaps()
+            btHomeAddFilter.handleVisualOverlaps()
         }
     }
 
@@ -120,7 +123,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun showLoading(isLoading: IsLoading) {
-        binding.btHomeRefresh.isEnabled = !isLoading
+        binding.btHomeAddFilter.isEnabled = !isLoading
         viewLoadingBinding.pbLoading.visibleOrGone(isLoading)
     }
 
