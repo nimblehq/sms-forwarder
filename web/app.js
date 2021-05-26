@@ -27,6 +27,7 @@ app.use(expressValidator({
 }));
 
 app.use('/', require('./routes/index'));
+app.use('/api', require('./api/app'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
