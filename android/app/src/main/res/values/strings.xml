@@ -8,4 +8,9 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_submit_button">Login</string>
+
+    <string name="permission_denied">Permission denied</string>
+    <string name="permission_require_title">Notice</string>
+    <string name="permission_receive_sms_require_message">To forward incoming SMS, please allow access in your device settings.</string>
+    <string name="permission_require_settings">Settings</string>
 </resources>
