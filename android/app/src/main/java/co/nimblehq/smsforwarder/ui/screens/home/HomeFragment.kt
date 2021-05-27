@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun handleVisualOverlaps() {
         with(binding) {
-            rvHomeData.handleVisualOverlaps()
+            rvHomeSmsData.handleVisualOverlaps()
             vHomeBackground.handleVisualOverlaps()
             btHomeAddFilter.handleVisualOverlaps()
         }
@@ -104,7 +104,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setupDataList() {
-        with(binding.rvHomeData) {
+        with(binding.rvHomeSmsData) {
             adapter = DataAdapter().also {
                 dataAdapter = it
             }

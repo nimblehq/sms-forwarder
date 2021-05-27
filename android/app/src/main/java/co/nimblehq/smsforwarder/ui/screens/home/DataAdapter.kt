@@ -46,9 +46,9 @@ internal class DataAdapter :
         fun bind(model: Data) {
             with(model) {
                 with(binding) {
-                    tvDataTitle.text = title
-                    tvDataAuthor.text = author
-                    ivDataThumbnail.loadImage(thumbnail)
+                    // TODO: update with the real data on the integrate task
+                    tvSmsProvider.text = "Sms Provider Name"
+                    tvSmsMessage.text = "Your OTP is 123456"
                 }
             }
         }
