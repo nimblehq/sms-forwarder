@@ -5,21 +5,21 @@ import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
-import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
-interface Input {
-
-    fun refresh()
-
-    fun navigateToDetail(data: Sms)
+interface HomeViewModel {
+    fun navigateToFilter()
 }
 
-class HomeViewModel @ViewModelInject constructor(
+interface Input {
+    fun refresh()
+}
+
+class HomeViewModelImpl @ViewModelInject constructor(
     private val getExampleDataUseCase: GetExampleDataUseCase
-) : BaseViewModel(), Input {
+) : BaseViewModel(), HomeViewModel, Input {
 
     val input: Input = this
 
@@ -35,13 +35,12 @@ class HomeViewModel @ViewModelInject constructor(
         fetchApi()
     }
 
-    override fun navigateToDetail(data: Sms) {
-        _navigator.onNext(
-            NavigationEvent.Second(SecondBundle(data))
-        )
+    override fun navigateToFilter() {
+        _navigator.onNext(NavigationEvent.Filter)
     }
 
     private fun fetchApi() {
+        // TODO: Remove this
         getExampleDataUseCase
             .execute(Unit)
             .doShowLoading()

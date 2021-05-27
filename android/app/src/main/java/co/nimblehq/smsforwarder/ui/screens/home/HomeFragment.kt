@@ -29,7 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     @Inject
     lateinit var rxPermissions: RxPermissions
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModelImpl>()
 
     private lateinit var smsAdapter: SmsAdapter
     private lateinit var viewLoadingBinding: ViewLoadingBinding
@@ -46,29 +46,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         setupDataList()
 
         binding.btHomeAddFilter
-            .subscribeOnClick { viewModel.input.refresh() }
+            .subscribeOnClick { viewModel.navigateToFilter() }
             .addToDisposables()
     }
 
     override fun handleVisualOverlaps() {
         with(binding) {
-            rvHomeSmsData.handleVisualOverlaps()
-            vHomeBackground.handleVisualOverlaps()
-            btHomeAddFilter.handleVisualOverlaps()
+            listOf(
+                rvHomeSmsData,
+                vHomeBackground,
+                btHomeAddFilter
+            ).forEach { it.handleVisualOverlaps() }
         }
-    }
-
-    override fun bindViewEvents() {
-        super.bindViewEvents()
-        smsAdapter
-            .itemClick
-            .subscribeOnItemClick {
-                when (it) {
-                    is SmsAdapter.OnItemClick.Item ->
-                        viewModel.input.navigateToDetail(it.sms)
-                }
-            }
-            .addToDisposables()
     }
 
     override fun bindViewModel() {

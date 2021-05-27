@@ -6,13 +6,13 @@ import co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle
 import org.junit.Before
 import org.junit.Test
 
-class SecondViewModelTest {
+class FilterViewModelTest {
 
-    private lateinit var viewModel: SecondViewModel
+    private lateinit var viewModel: FilterViewModel
 
     @Before
     fun setup() {
-        viewModel = SecondViewModel()
+        viewModel = FilterViewModel()
     }
 
     @Test

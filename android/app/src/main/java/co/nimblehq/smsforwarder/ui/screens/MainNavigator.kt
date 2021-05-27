@@ -5,9 +5,6 @@ import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.ui.base.*
 import co.nimblehq.smsforwarder.ui.screens.home.HomeFragmentDirections
 import co.nimblehq.smsforwarder.ui.screens.login.LoginFragmentDirections
-import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
-import co.nimblehq.smsforwarder.ui.screens.second.SecondFragmentDirections
-import co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle
 import javax.inject.Inject
 
 interface MainNavigator : BaseNavigator
@@ -21,8 +18,7 @@ class MainNavigatorImpl @Inject constructor(
     override fun navigate(event: NavigationEvent) {
         when (event) {
             is NavigationEvent.Home -> navigateToHome()
-            is NavigationEvent.Second -> navigateToSecond(event.bundle)
-            is NavigationEvent.WebView -> navigateToWebView(event.bundle)
+            is NavigationEvent.Filter -> navigateToFilter()
         }
     }
 
@@ -32,21 +28,11 @@ class MainNavigatorImpl @Inject constructor(
         )
     }
 
-    private fun navigateToSecond(bundle: SecondBundle) {
+    private fun navigateToFilter() {
         val navController = findNavController()
         when (navController?.currentDestination?.id) {
             R.id.homeFragment -> navController.navigate(
-                HomeFragmentDirections.actionHomeFragmentToSecondFragment(bundle)
-            )
-            else -> unsupportedNavigation()
-        }
-    }
-
-    private fun navigateToWebView(bundle: WebViewBundle) {
-        val navController = findNavController()
-        when (navController?.currentDestination?.id) {
-            R.id.secondFragment -> navController.navigate(
-                SecondFragmentDirections.actionSecondFragmentToWebViewFragment(bundle)
+                HomeFragmentDirections.actionHomeFragmentToFilterFragment()
             )
             else -> unsupportedNavigation()
         }

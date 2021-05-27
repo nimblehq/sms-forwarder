@@ -47,7 +47,7 @@ class MainNavigatorTest {
 
     @Test
     fun `When navigating to WebView screen from Second screen, it navigates with corresponding bundle`() {
-        When calling mockDestination.id itReturns R.id.secondFragment
+        When calling mockDestination.id itReturns R.id.filterFragment
 
         val bundle = WebViewBundle("url")
         navigator.navigate(

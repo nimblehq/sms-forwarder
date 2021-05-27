@@ -34,7 +34,7 @@
         android:text="@string/home_add_filter_button"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/dimen_large_display_text"
+        android:textSize="@dimen/dimen_display_text_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
