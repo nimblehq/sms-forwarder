@@ -2,18 +2,17 @@ package co.nimblehq.smsforwarder.ui.screens.home
 
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
-import co.nimblehq.smsforwarder.databinding.ItemDataBinding
-import co.nimblehq.smsforwarder.domain.data.Data
-import co.nimblehq.smsforwarder.extension.loadImage
+import co.nimblehq.smsforwarder.databinding.ItemSmsBinding
+import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.ui.common.ItemClickable
 import co.nimblehq.smsforwarder.ui.common.ItemClickableImpl
 import kotlinx.android.extensions.LayoutContainer
 
-internal class DataAdapter :
-    RecyclerView.Adapter<DataAdapter.ViewHolder>(),
-    ItemClickable<DataAdapter.OnItemClick> by ItemClickableImpl() {
+internal class SmsAdapter :
+    RecyclerView.Adapter<SmsAdapter.ViewHolder>(),
+    ItemClickable<SmsAdapter.OnItemClick> by ItemClickableImpl() {
 
-    var items = listOf<Data>()
+    var items = listOf<Sms>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -22,7 +21,7 @@ internal class DataAdapter :
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemDataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemSmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -31,7 +30,7 @@ internal class DataAdapter :
     }
 
     internal inner class ViewHolder(
-        private val binding: ItemDataBinding
+        private val binding: ItemSmsBinding
     ) : RecyclerView.ViewHolder(binding.root), LayoutContainer {
 
         override val containerView: View
@@ -43,7 +42,7 @@ internal class DataAdapter :
             }
         }
 
-        fun bind(model: Data) {
+        fun bind(model: Sms) {
             with(model) {
                 with(binding) {
                     // TODO: update with the real data on the integrate task
@@ -56,6 +55,6 @@ internal class DataAdapter :
 
     sealed class OnItemClick {
 
-        data class Item(val data: Data) : OnItemClick()
+        data class Item(val sms: Sms) : OnItemClick()
     }
 }
