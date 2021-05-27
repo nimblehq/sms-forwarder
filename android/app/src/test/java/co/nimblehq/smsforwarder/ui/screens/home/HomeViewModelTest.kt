@@ -4,7 +4,6 @@ import co.nimblehq.smsforwarder.domain.data.error.DataError
 import co.nimblehq.smsforwarder.domain.test.MockUtil
 import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
-import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
 import com.nhaarman.mockitokotlin2.any
 import io.reactivex.Single
 import org.amshove.kluent.*
@@ -13,18 +12,18 @@ import org.junit.Test
 
 class HomeViewModelTest {
 
-    private lateinit var viewModelImpl: HomeViewModelImpl
+    private lateinit var viewModel: HomeViewModelImpl
     private val mockGetExampleDataUseCase = mock<GetExampleDataUseCase>()
 
     @Before
     fun setup() {
         When calling mockGetExampleDataUseCase.execute(any()) itReturns Single.just(MockUtil.dataList)
-        viewModelImpl = HomeViewModelImpl(mockGetExampleDataUseCase)
+        viewModel = HomeViewModelImpl(mockGetExampleDataUseCase)
     }
 
     @Test
     fun `When initializing the view model, it emits the first data correspondingly`() {
-        val dataObserver = viewModelImpl.data.test()
+        val dataObserver = viewModel.data.test()
 
         dataObserver
             .assertValueCount(1)
@@ -33,7 +32,7 @@ class HomeViewModelTest {
 
     @Test
     fun `When initializing the view model, it doesn't emit to show any loading indicator, defaulting to false`() {
-        val loadingObserver = viewModelImpl.showLoading.test()
+        val loadingObserver = viewModel.showLoading.test()
 
         loadingObserver
             .assertNoErrors()
@@ -42,9 +41,9 @@ class HomeViewModelTest {
 
     @Test
     fun `When calling refresh responds positive result, it emits the second data correspondingly`() {
-        val dataObserver = viewModelImpl.data.test()
+        val dataObserver = viewModel.data.test()
 
-        viewModelImpl.input.refresh()
+        viewModel.input.refresh()
 
         dataObserver
             .assertValueCount(2)
@@ -53,9 +52,9 @@ class HomeViewModelTest {
 
     @Test
     fun `When calling refresh regardless of success or failure, it emits to 2 new states to showLoading as true then false`() {
-        val loadingObserver = viewModelImpl.showLoading.test()
+        val loadingObserver = viewModel.showLoading.test()
 
-        viewModelImpl.input.refresh()
+        viewModel.input.refresh()
 
         loadingObserver
             .assertNoErrors()
@@ -66,9 +65,9 @@ class HomeViewModelTest {
     fun `When calling refresh responds any negative result, it emits the corresponding error`() {
         When calling mockGetExampleDataUseCase.execute(any()) itReturns
             Single.error(DataError.GetDataError(null))
-        val testObserver = viewModelImpl.error.test()
+        val testObserver = viewModel.error.test()
 
-        viewModelImpl.input.refresh()
+        viewModel.input.refresh()
 
         testObserver
             .assertNoErrors()
@@ -76,17 +75,13 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `When navigating to Detail screen responds positive result, it emits the corresponding navigation event`() {
-        val navigatorObserver = viewModelImpl.navigator.test()
+    fun `When navigating to Filter screen responds positive result, it emits the corresponding navigation event`() {
+        val navigatorObserver = viewModel.navigator.test()
 
-        viewModelImpl.navigateToDetail(MockUtil.dataList[0])
+        viewModel.navigateToFilter()
 
         navigatorObserver
             .assertValueCount(1)
-            .assertValue(
-                NavigationEvent.Second(
-                    SecondBundle(MockUtil.dataList[0])
-                )
-            )
+            .assertValue(NavigationEvent.Filter)
     }
 }
