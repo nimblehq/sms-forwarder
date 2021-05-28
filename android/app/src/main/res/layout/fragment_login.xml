@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
-    android:padding="@dimen/default_margin">
+    android:background="@drawable/bg_app"
+    android:padding="@dimen/default_margin_24">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLoginLogo"
@@ -38,7 +38,7 @@
         android:id="@+id/tilLoginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin_24"
         android:hint="@string/login_password"
         app:layout_constraintBottom_toTopOf="@id/btLogin"
         app:layout_constraintTop_toBottomOf="@id/tilLoginUsername">
@@ -53,7 +53,7 @@
         android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin_24"
         android:text="@string/login_submit_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,11 +7,12 @@ import android.view.View.*
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.domain.schedulers.SchedulerProvider
-import co.nimblehq.smsforwarder.extension.hideSoftKeyboard
-import co.nimblehq.smsforwarder.extension.subscribeOnClick
+import co.nimblehq.smsforwarder.extension.*
 import co.nimblehq.smsforwarder.ui.common.Toaster
 import co.nimblehq.smsforwarder.ui.userReadableMessage
+import com.google.android.material.appbar.AppBarLayout
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -122,5 +123,13 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment(), BaseFragmentCallback
         requireActivity().window.decorView.run {
             systemUiVisibility = this@BaseFragment.systemUiVisibility
         }
+    }
+
+    protected fun hideAppBar() {
+        requireActivity().findViewById<AppBarLayout>(R.id.appBar).gone()
+    }
+
+    protected fun showAppBar() {
+        requireActivity().findViewById<AppBarLayout>(R.id.appBar).visible()
     }
 }

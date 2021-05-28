@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import co.nimblehq.smsforwarder.databinding.FragmentSecondBinding
-import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.extension.loadImage
 import co.nimblehq.smsforwarder.extension.subscribeOnClick
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
@@ -85,7 +85,7 @@ class SecondFragment : BaseFragment<FragmentSecondBinding>() {
         }
     }
 
-    private fun bindData(data: Data) {
+    private fun bindData(data: Sms) {
         with(data) {
             with(binding) {
                 tvSecondTitle.text = title

@@ -8,7 +8,6 @@ import co.nimblehq.smsforwarder.extension.subscribeOnClick
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
 import co.nimblehq.smsforwarder.ui.screens.MainNavigator
-import com.tbruyelle.rxpermissions2.RxPermissions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,9 +17,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     @Inject
     lateinit var navigator: MainNavigator
 
-    @Inject
-    lateinit var rxPermissions: RxPermissions
-
     private val viewModel by viewModels<LoginViewModelImpl>()
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentLoginBinding
@@ -29,6 +25,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
 
     override fun setupView() {
+        hideAppBar()
+
         with(binding) {
             btLogin
                 .subscribeOnClick(viewModel::navigateToFilter)

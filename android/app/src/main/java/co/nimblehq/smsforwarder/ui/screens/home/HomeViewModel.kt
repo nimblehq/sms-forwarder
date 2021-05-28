@@ -1,7 +1,7 @@
 package co.nimblehq.smsforwarder.ui.screens.home
 
 import androidx.hilt.lifecycle.ViewModelInject
-import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
@@ -14,7 +14,7 @@ interface Input {
 
     fun refresh()
 
-    fun navigateToDetail(data: Data)
+    fun navigateToDetail(data: Sms)
 }
 
 class HomeViewModel @ViewModelInject constructor(
@@ -23,8 +23,8 @@ class HomeViewModel @ViewModelInject constructor(
 
     val input: Input = this
 
-    private val _data = BehaviorSubject.create<List<Data>>()
-    val data: Observable<List<Data>>
+    private val _data = BehaviorSubject.create<List<Sms>>()
+    val data: Observable<List<Sms>>
         get() = _data
 
     init {
@@ -35,7 +35,7 @@ class HomeViewModel @ViewModelInject constructor(
         fetchApi()
     }
 
-    override fun navigateToDetail(data: Data) {
+    override fun navigateToDetail(data: Sms) {
         _navigator.onNext(
             NavigationEvent.Second(SecondBundle(data))
         )

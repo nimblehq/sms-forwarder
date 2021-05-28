@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.*
 import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.databinding.FragmentHomeBinding
 import co.nimblehq.smsforwarder.databinding.ViewLoadingBinding
-import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.extension.*
 import co.nimblehq.smsforwarder.lib.IsLoading
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel by viewModels<HomeViewModel>()
 
-    private lateinit var dataAdapter: DataAdapter
+    private lateinit var smsAdapter: SmsAdapter
     private lateinit var viewLoadingBinding: ViewLoadingBinding
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
@@ -40,29 +40,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
     override fun setupView() {
+        showAppBar()
+
         viewLoadingBinding = ViewLoadingBinding.bind(binding.root)
         setupDataList()
 
-        binding.btHomeRefresh
+        binding.btHomeAddFilter
             .subscribeOnClick { viewModel.input.refresh() }
             .addToDisposables()
     }
 
     override fun handleVisualOverlaps() {
         with(binding) {
-            rvHomeData.handleVisualOverlaps(marginInsteadOfPadding = false)
-            btHomeRefresh.handleVisualOverlaps()
+            rvHomeSmsData.handleVisualOverlaps()
+            vHomeBackground.handleVisualOverlaps()
+            btHomeAddFilter.handleVisualOverlaps()
         }
     }
 
     override fun bindViewEvents() {
         super.bindViewEvents()
-        dataAdapter
+        smsAdapter
             .itemClick
             .subscribeOnItemClick {
                 when (it) {
-                    is DataAdapter.OnItemClick.Item ->
-                        viewModel.input.navigateToDetail(it.data)
+                    is SmsAdapter.OnItemClick.Item ->
+                        viewModel.input.navigateToDetail(it.sms)
                 }
             }
             .addToDisposables()
@@ -101,9 +104,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setupDataList() {
-        with(binding.rvHomeData) {
-            adapter = DataAdapter().also {
-                dataAdapter = it
+        with(binding.rvHomeSmsData) {
+            adapter = SmsAdapter().also {
+                smsAdapter = it
             }
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(
@@ -115,12 +118,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun bindData(data: List<Data>) {
-        dataAdapter.items = data
+    private fun bindData(sms: List<Sms>) {
+        smsAdapter.items = sms
     }
 
     private fun showLoading(isLoading: IsLoading) {
-        binding.btHomeRefresh.isEnabled = !isLoading
+        binding.btHomeAddFilter.isEnabled = !isLoading
         viewLoadingBinding.pbLoading.visibleOrGone(isLoading)
     }
 

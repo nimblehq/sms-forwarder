@@ -5,7 +5,7 @@ import co.nimblehq.smsforwarder.data.service.response.ExampleResponse
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Data(
+data class Sms(
     val title: String,
     val author: String,
     val thumbnail: String,
@@ -14,7 +14,7 @@ data class Data(
 
 fun ExampleResponse.toDataList() =
     data.children.map {
-        Data(
+        Sms(
             it.data.title,
             it.data.author,
             it.data.thumbnail,

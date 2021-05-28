@@ -1,7 +1,7 @@
 package co.nimblehq.smsforwarder.domain.test
 
 import co.nimblehq.smsforwarder.data.service.response.*
-import co.nimblehq.smsforwarder.domain.data.Data
+import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.domain.data.toDataList
 
 object MockUtil {
@@ -38,5 +38,5 @@ object MockUtil {
             )
         )
 
-    val dataList: List<Data> = exampleData.toDataList()
+    val dataList: List<Sms> = exampleData.toDataList()
 }
