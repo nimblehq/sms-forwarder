@@ -1,8 +1,10 @@
 package co.nimblehq.smsforwarder.di.modules
 
 import android.content.Context
+import co.nimblehq.smsforwarder.FilteringSmsPersistenceImpl
 import co.nimblehq.smsforwarder.IncomingSmsPersistenceImpl
 import co.nimblehq.smsforwarder.SmsForwarderApplication
+import co.nimblehq.smsforwarder.domain.persistence.FilteringSmsPersistence
 import co.nimblehq.smsforwarder.domain.persistence.IncomingSmsPersistence
 import co.nimblehq.smsforwarder.domain.schedulers.BaseSchedulerProvider
 import co.nimblehq.smsforwarder.domain.schedulers.SchedulerProvider
@@ -30,4 +32,8 @@ class AppModule {
     @Provides
     @Singleton
     fun provideIncomingSmsObservable(persistence: IncomingSmsPersistenceImpl): IncomingSmsPersistence = persistence
+
+    @Provides
+    @Singleton
+    fun provideFilteringSmsPersistence(persistence: FilteringSmsPersistenceImpl): FilteringSmsPersistence = persistence
 }

@@ -19,13 +19,15 @@ class NotifyNewIncomingSmsUseCase @Inject constructor(
 
     data class Input(
         val sender: String,
-        val messageBody: String
+        val messageBody: String,
+        val forwardEmailAddress: String
     )
 
     override fun create(input: Input): Single<Unit> {
         val entity = IncomingSmsEntity(
             input.sender,
-            input.messageBody
+            input.messageBody,
+            input.forwardEmailAddress
         )
         return Single.fromCallable {
             persistence.newIncomingSms(entity)

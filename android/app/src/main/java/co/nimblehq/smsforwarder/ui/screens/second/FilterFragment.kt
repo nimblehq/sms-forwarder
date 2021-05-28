@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import co.nimblehq.smsforwarder.databinding.FragmentFilterBinding
+import co.nimblehq.smsforwarder.domain.data.FilterSmsEntity
+import co.nimblehq.smsforwarder.domain.persistence.FilteringSmsPersistence
 import co.nimblehq.smsforwarder.extension.subscribeOnClick
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
@@ -17,6 +19,9 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     @Inject
     lateinit var navigator: MainNavigator
 
+    @Inject
+    lateinit var filteringSmsPersistence: FilteringSmsPersistence
+
     private val viewModel by viewModels<FilterViewModel>()
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentFilterBinding
@@ -27,7 +32,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     override fun setupView() {
         with(binding) {
             btFilterSubmit
-                .subscribeOnClick(navigator::navigateUp)
+                .subscribeOnClick(::addNewFilter)
                 .addToDisposables()
         }
     }
@@ -40,5 +45,21 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
 
     override fun bindViewModel() {
         viewModel.navigator bindTo navigator::navigate
+    }
+
+    private fun addNewFilter() {
+        with(binding) {
+            val sender = etFilterSendFromProviderName.text.toString()
+            val forwardEmailAddress = etFilterForwardToEmail.text.toString()
+
+            val filterEntity = FilterSmsEntity(
+                sender,
+                forwardEmailAddress
+            )
+
+            filteringSmsPersistence.addFilter(filterEntity)
+        }
+
+        navigator.navigateUp()
     }
 }

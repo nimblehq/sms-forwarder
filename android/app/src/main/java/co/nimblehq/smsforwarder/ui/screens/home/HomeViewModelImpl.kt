@@ -3,6 +3,7 @@ package co.nimblehq.smsforwarder.ui.screens.home
 import androidx.hilt.lifecycle.ViewModelInject
 import co.nimblehq.smsforwarder.domain.data.IncomingSmsEntity
 import co.nimblehq.smsforwarder.domain.data.Sms
+import co.nimblehq.smsforwarder.domain.test.MockUtil
 import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
 import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
@@ -24,9 +25,7 @@ class HomeViewModelImpl @ViewModelInject constructor(
     private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase
 ) : BaseViewModel(), HomeViewModel, Input {
 
-    val input: Input = this
-
-    private val _data = BehaviorSubject.create<List<Sms>>()
+    private val _data = BehaviorSubject.createDefault<List<Sms>>(MockUtil.sms)
     val data: Observable<List<Sms>>
         get() = _data
 
@@ -56,7 +55,7 @@ class HomeViewModelImpl @ViewModelInject constructor(
         val input = ForwardIncomingSmsUseCase.Input(
             entity.incomingNumber,
             entity.messageBody,
-            "hoang.l@nimblehq.co" // FIXME
+            entity.emailAddress
         )
         forwardIncomingSmsUseCase
             .execute(input)
