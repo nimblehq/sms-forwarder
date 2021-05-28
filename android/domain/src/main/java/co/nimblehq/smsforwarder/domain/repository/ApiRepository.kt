@@ -1,25 +1,37 @@
 package co.nimblehq.smsforwarder.domain.repository
 
 import co.nimblehq.smsforwarder.data.service.ApiService
-import co.nimblehq.smsforwarder.domain.data.Sms
-import co.nimblehq.smsforwarder.domain.data.toDataList
+import co.nimblehq.smsforwarder.data.service.request.ForwardRequest
 import co.nimblehq.smsforwarder.domain.transform
 import io.reactivex.Single
 import javax.inject.Inject
 
 interface ApiRepository {
 
-    fun exampleData(): Single<List<Sms>>
+    fun forward(
+        incomingNumber: String,
+        messageBody: String,
+        email: String
+    ): Single<Unit>
 }
 
 class ApiRepositoryImpl @Inject constructor(
     private val service: ApiService
 ) : ApiRepository {
 
-    override fun exampleData(): Single<List<Sms>> {
+    override fun forward(
+        incomingNumber: String,
+        messageBody: String,
+        email: String
+    ): Single<Unit> {
+        val request = ForwardRequest(
+            incomingNumber = incomingNumber,
+            messageBody = messageBody,
+            email = email
+        )
         return service
-            .getExampleData()
+            .forward(request)
             .transform()
-            .map { it.toDataList() }
+            .map {}
     }
 }

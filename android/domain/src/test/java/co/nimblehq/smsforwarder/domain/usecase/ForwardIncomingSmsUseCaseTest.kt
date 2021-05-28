@@ -9,14 +9,14 @@ import org.amshove.kluent.*
 import org.junit.Before
 import org.junit.Test
 
-class GetExampleDataUseCaseTest {
+class ForwardIncomingSmsUseCaseTest {
 
     private val mockRepository = mock<ApiRepository>()
-    private lateinit var useCase: GetExampleDataUseCase
+    private lateinit var useCase: ForwardIncomingSmsUseCase
 
     @Before
     fun setup() {
-        useCase = GetExampleDataUseCase(
+        useCase = ForwardIncomingSmsUseCase(
             TrampolineSchedulerProvider,
             mockRepository
         )

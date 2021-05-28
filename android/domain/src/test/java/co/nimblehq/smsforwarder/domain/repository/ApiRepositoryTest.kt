@@ -3,35 +3,40 @@ package co.nimblehq.smsforwarder.domain.repository
 import co.nimblehq.smsforwarder.data.service.ApiService
 import co.nimblehq.smsforwarder.domain.test.MockUtil
 import io.reactivex.Single
-import org.amshove.kluent.When
-import org.amshove.kluent.calling
-import org.amshove.kluent.itReturns
-import org.amshove.kluent.mock
+import org.amshove.kluent.*
 import org.junit.Test
 import retrofit2.Response
 
 class ApiRepositoryTest {
 
     @Test
-    fun `When execute exampleData request successfully, it returns success response`() {
+    fun `When execute forward request successfully, it returns success response`() {
         val mockService = mock<ApiService>()
-        When calling mockService.getExampleData() itReturns
-            Single.just(Response.success(MockUtil.exampleData))
+        When calling mockService.forward(any()) itReturns
+                Single.just(Response.success(MockUtil.forwardResponse))
         val repository = ApiRepositoryImpl(mockService)
 
-        val testSubscriber = repository.exampleData().test()
+        val testSubscriber = repository.forward(
+            "incomingNumber",
+            "messageBody",
+            "email"
+        ).test()
         testSubscriber
             .assertNoErrors()
             .assertComplete()
     }
 
     @Test
-    fun `When execute exampleData request failed, it returns wrapped error`() {
+    fun `When execute forward request failed, it returns wrapped error`() {
         val mockService = mock<ApiService>()
-        When calling mockService.getExampleData() itReturns Single.error(Throwable())
+        When calling mockService.forward(any()) itReturns Single.error(Throwable())
         val repository = ApiRepositoryImpl(mockService)
 
-        val testSubscriber = repository.exampleData().test()
+        val testSubscriber = repository.forward(
+            "incomingNumber",
+            "messageBody",
+            "email"
+        ).test()
         testSubscriber
             .assertError(Throwable::class.java)
             .assertValueCount(0)
