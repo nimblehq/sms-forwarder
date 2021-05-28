@@ -25,6 +25,8 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
         }
 
     override fun setupView() {
+        showAppBar()
+
         with(binding) {
             btFilterSubmit
                 .subscribeOnClick(navigator::navigateUp)
