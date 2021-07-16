@@ -34,4 +34,11 @@
         <item name="android:textColor">@color/red_alizarin</item>
     </style>
 
+    <style name="AppButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_app_button</item>
+        <item name="android:textColor">@color/purple_violent_violet</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/dimen_display_text_20</item>
+    </style>
+
 </resources>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_margin_8">8dp</dimen>
     <dimen name="default_margin_16">16dp</dimen>
     <dimen name="default_margin_24">24dp</dimen>
+    <dimen name="default_margin_40">40dp</dimen>
 
     <dimen name="default_corner_radius">20dp</dimen>
 

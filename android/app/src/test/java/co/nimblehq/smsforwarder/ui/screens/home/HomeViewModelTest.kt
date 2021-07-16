@@ -4,7 +4,6 @@ import co.nimblehq.smsforwarder.domain.data.error.DataError
 import co.nimblehq.smsforwarder.domain.test.MockUtil
 import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
-import co.nimblehq.smsforwarder.ui.screens.second.SecondBundle
 import com.nhaarman.mockitokotlin2.any
 import io.reactivex.Single
 import org.amshove.kluent.*
@@ -13,13 +12,13 @@ import org.junit.Test
 
 class HomeViewModelTest {
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: HomeViewModelImpl
     private val mockGetExampleDataUseCase = mock<GetExampleDataUseCase>()
 
     @Before
     fun setup() {
         When calling mockGetExampleDataUseCase.execute(any()) itReturns Single.just(MockUtil.dataList)
-        viewModel = HomeViewModel(mockGetExampleDataUseCase)
+        viewModel = HomeViewModelImpl(mockGetExampleDataUseCase)
     }
 
     @Test
@@ -76,17 +75,13 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `When navigating to Detail screen responds positive result, it emits the corresponding navigation event`() {
+    fun `When navigating to Filter screen responds positive result, it emits the corresponding navigation event`() {
         val navigatorObserver = viewModel.navigator.test()
 
-        viewModel.navigateToDetail(MockUtil.dataList[0])
+        viewModel.navigateToFilter()
 
         navigatorObserver
             .assertValueCount(1)
-            .assertValue(
-                NavigationEvent.Second(
-                    SecondBundle(MockUtil.dataList[0])
-                )
-            )
+            .assertValue(NavigationEvent.Filter)
     }
 }

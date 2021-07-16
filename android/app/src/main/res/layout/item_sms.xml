@@ -25,7 +25,7 @@
         android:layout_marginStart="10dp"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/dimen_display_text_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivSmsBullet"
         app:layout_constraintTop_toTopOf="parent"

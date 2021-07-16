@@ -14,4 +14,12 @@
     <string name="permission_require_title">Notice</string>
     <string name="permission_receive_sms_require_message">To forward incoming SMS, please allow access in your device settings.</string>
     <string name="permission_require_settings">Settings</string>
+
+    <string name="filter_sms_provider_name">SMS Provider Name</string>
+    <string name="filter_send_from">Send From</string>
+    <string name="filter_sms_template">SMS Template</string>
+    <string name="filter_forward_to">Forward To</string>
+    <string name="filter_email">Email</string>
+    <string name="filter_slack_channel">Slack Channel</string>
+    <string name="filter_submit_button">Submit</string>
 </resources>

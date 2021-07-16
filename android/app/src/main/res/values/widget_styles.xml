@@ -3,7 +3,7 @@
     <style name="Widget.Template.TextView" parent="@android:style/Widget.TextView">
         <item name="android:fontFamily">@font/circularstd_book</item>
         <item name="android:textColor">@color/blue_tory</item>
-        <item name="android:textSize">@dimen/dimen_normal_display_text</item>
+        <item name="android:textSize">@dimen/dimen_display_text_14</item>
     </style>
 
     <style name="Widget.Template.TextView.Bold">

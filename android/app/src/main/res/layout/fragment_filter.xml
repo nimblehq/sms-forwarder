@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
+    android:padding="@dimen/default_margin_24">
+
+    <View
+        android:id="@+id/vFilterSendFromBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/default_margin_40"
+        android:background="@drawable/bg_filter"
+        app:layout_constraintBottom_toBottomOf="@id/tilFilterSendFromTemplate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="Widget.Template.TextView.Bold"
+        android:id="@+id/tvFilterSendFrom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:text="@string/filter_send_from"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_display_text_18"
+        app:layout_constraintTop_toTopOf="@id/vFilterSendFromBg" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/AppTextInputLayout"
+        android:id="@+id/tilFilterSendFromProviderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_8"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:hint="@string/filter_sms_provider_name"
+        app:layout_constraintTop_toBottomOf="@id/tvFilterSendFrom">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFilterSendFromProviderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/AppTextInputLayout"
+        android:id="@+id/tilFilterSendFromTemplate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_8"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:hint="@string/filter_sms_template"
+        android:paddingBottom="@dimen/default_margin_16"
+        app:layout_constraintTop_toBottomOf="@id/tilFilterSendFromProviderName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFilterSendFromTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        style="Widget.Template.TextView.Bold"
+        android:id="@+id/tvFilterForwardIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:rotation="90"
+        android:text=">"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFilterSendFromBg" />
+
+    <View
+        android:id="@+id/vFilterForwardToBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:background="@drawable/bg_filter"
+        app:layout_constraintBottom_toBottomOf="@id/tilFilterForwardToSlack"
+        app:layout_constraintTop_toBottomOf="@id/tvFilterForwardIcon" />
+
+    <TextView
+        style="Widget.Template.TextView.Bold"
+        android:id="@+id/tvFilterForwardTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:text="@string/filter_forward_to"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_display_text_18"
+        app:layout_constraintTop_toTopOf="@id/vFilterForwardToBg" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/AppTextInputLayout"
+        android:id="@+id/tilFilterForwardToEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_8"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:hint="@string/filter_email"
+        app:layout_constraintTop_toBottomOf="@id/tvFilterForwardTo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFilterForwardToEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/AppTextInputLayout"
+        android:id="@+id/tilFilterForwardToSlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_8"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:hint="@string/filter_slack_channel"
+        android:paddingBottom="@dimen/default_margin_16"
+        app:layout_constraintTop_toBottomOf="@id/tilFilterForwardToEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFilterForwardToSlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <android.widget.Button
+        style="@style/AppButton"
+        android:id="@+id/btFilterSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_24"
+        android:text="@string/filter_submit_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFilterForwardToBg"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <include layout="@layout/view_loading" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

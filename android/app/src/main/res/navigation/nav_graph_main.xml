@@ -26,8 +26,8 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_homeFragment_to_secondFragment"
-            app:destination="@id/secondFragment"
+            android:id="@+id/action_homeFragment_to_filterFragment"
+            app:destination="@id/filterFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -36,23 +36,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="co.nimblehq.smsforwarder.ui.screens.second.SecondFragment"
-        tools:layout="@layout/fragment_second">
-
-        <argument
-            android:name="bundle"
-            app:argType="co.nimblehq.smsforwarder.ui.screens.second.SecondBundle" />
-
-        <action
-            android:id="@+id/action_secondFragment_to_webViewFragment"
-            app:destination="@id/webViewFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    </fragment>
+        android:id="@+id/filterFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.second.FilterFragment"
+        tools:layout="@layout/fragment_filter" />
 
     <fragment
         android:id="@+id/webViewFragment"
