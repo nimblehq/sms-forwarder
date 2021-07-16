@@ -42,12 +42,14 @@
         android:layout_marginTop="@dimen/default_margin_24"
         android:hint="@string/login_password"
         app:layout_constraintBottom_toTopOf="@id/btLogin"
-        app:layout_constraintTop_toBottomOf="@id/tilLoginUsername">
+        app:layout_constraintTop_toBottomOf="@id/tilLoginUsername"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLoginPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <android.widget.Button
