@@ -2,11 +2,10 @@ package co.nimblehq.smsforwarder.ui.screens.home
 
 import androidx.hilt.lifecycle.ViewModelInject
 import co.nimblehq.smsforwarder.domain.data.Sms
-import co.nimblehq.smsforwarder.domain.usecase.GetExampleDataUseCase
+import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
 import io.reactivex.Observable
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
 interface HomeViewModel {
@@ -18,7 +17,7 @@ interface Input {
 }
 
 class HomeViewModelImpl @ViewModelInject constructor(
-    private val getExampleDataUseCase: GetExampleDataUseCase
+    private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase
 ) : BaseViewModel(), HomeViewModel, Input {
 
     val input: Input = this
@@ -40,14 +39,26 @@ class HomeViewModelImpl @ViewModelInject constructor(
     }
 
     private fun fetchApi() {
-        // TODO: Remove this
-        getExampleDataUseCase
-            .execute(Unit)
-            .doShowLoading()
-            .subscribeBy(
-                onSuccess = _data::onNext,
-                onError = _error::onNext
-            )
-            .addToDisposables()
+        // TODO
+//        observeIncomingSmsUseCase
+//            .execute(Unit)
+//            .subscribe(::forwardIncomingSms)
+//            .addToDisposables()
     }
+
+//    private fun forwardIncomingSms(entity: IncomingSmsEntity) {
+//        val input = ForwardIncomingSmsUseCase.Input(
+//            entity.incomingNumber,
+//            entity.messageBody,
+//            "hoang.l@nimblehq.co" // FIXME
+//        )
+//        forwardIncomingSmsUseCase
+//            .execute(input)
+//            .doShowLoading()
+//            .subscribeBy(
+//                onSuccess = {},
+//                onError = _error::onNext
+//            )
+//            .addToDisposables()
+//    }
 }
