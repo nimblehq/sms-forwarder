@@ -13,7 +13,7 @@ class MainNavigatorImpl @Inject constructor(
     fragment: Fragment
 ) : BaseNavigatorImpl(fragment), MainNavigator {
 
-    override val navHostFragmentId = R.id.navHostFragment
+    override val navHostFragmentId = R.id.fcvMain
 
     override fun navigate(event: NavigationEvent) {
         when (event) {

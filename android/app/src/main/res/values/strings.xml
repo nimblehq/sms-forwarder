@@ -22,4 +22,9 @@
     <string name="filter_email">Email</string>
     <string name="filter_slack_channel">Slack Channel</string>
     <string name="filter_submit_button">Submit</string>
+
+    <string name="toolbar_all_filters">All Filters</string>
+    <string name="toolbar_filter_management">Filter Management</string>
+    <string name="menu_history">History</string>
+    <string name="menu_logout">Logout</string>
 </resources>

@@ -126,10 +126,10 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment(), BaseFragmentCallback
     }
 
     protected fun hideAppBar() {
-        requireActivity().findViewById<AppBarLayout>(R.id.appBar).gone()
+        requireActivity().findViewById<AppBarLayout>(R.id.tbMain).gone()
     }
 
     protected fun showAppBar() {
-        requireActivity().findViewById<AppBarLayout>(R.id.appBar).visible()
+        requireActivity().findViewById<AppBarLayout>(R.id.tbMain).visible()
     }
 }
