@@ -27,4 +27,5 @@
     <string name="menu_filter_management">Filter Management</string>
     <string name="menu_history">History</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_add_filter">Add Filter</string>
 </resources>

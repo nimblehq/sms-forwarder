@@ -1,8 +1,7 @@
 package co.nimblehq.smsforwarder.ui.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
+import android.view.*
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
