@@ -6,12 +6,13 @@ var express = require('express'),
   expressValidator = require('express-validator'),
   app = express();
 
+const User = require('./models').User;
+
 // basic authentication https://www.npmjs.com/package/express-basic-auth
 const basicAuth = require('express-basic-auth')
 app.use(basicAuth({
-  users: {
-    'admin': '123456'
-  },
+  authorizer: asyncAuthorizer,
+  authorizeAsync: true,
   challenge: true
 }))
 
@@ -54,12 +55,19 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-
-
-// TODO Test code, will be updated in https://github.com/nimblehq/sms-forwarder/issues/54
-const User = require('./models').User;
-User.findAll().then(function (users) {
-  console.log(users.length);
-});
+function asyncAuthorizer(username, password, callback) {
+  User.findOne({
+    where: {
+      username: username,
+      password: password
+    }
+  }).then(function (user) {
+    if (user) {
+      return callback(null, true)
+    } else {
+      return callback(null, false)
+    }
+  });
+}
 
 module.exports = app;
