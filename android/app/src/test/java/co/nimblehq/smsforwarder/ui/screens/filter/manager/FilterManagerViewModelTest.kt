@@ -1,4 +1,4 @@
-package co.nimblehq.smsforwarder.ui.screens.filter
+package co.nimblehq.smsforwarder.ui.screens.filter.manager
 
 import co.nimblehq.smsforwarder.ui.screens.filter.manager.FilterManagerViewModel
 import org.junit.Before

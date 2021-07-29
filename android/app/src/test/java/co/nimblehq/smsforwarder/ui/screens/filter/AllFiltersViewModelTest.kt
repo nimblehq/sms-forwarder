@@ -1,27 +1,25 @@
-package co.nimblehq.smsforwarder.ui.screens.home
+package co.nimblehq.smsforwarder.ui.screens.filter
 
-import co.nimblehq.smsforwarder.domain.test.MockUtil
 import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
+import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
-import co.nimblehq.smsforwarder.ui.screens.filter.AllFiltersViewModelImpl
 import com.nhaarman.mockitokotlin2.any
 import io.reactivex.Single
-import org.amshove.kluent.When
-import org.amshove.kluent.calling
-import org.amshove.kluent.itReturns
-import org.amshove.kluent.mock
+import org.amshove.kluent.*
 import org.junit.Before
 import org.junit.Test
 
 class AllFiltersViewModelTest {
 
     private lateinit var viewModel: AllFiltersViewModelImpl
+    private val mockObserveIncomingSmsUseCase = mock<ObserveIncomingSmsUseCase>()
     private val mockForwardIncomingSmsUseCase = mock<ForwardIncomingSmsUseCase>()
 
     @Before
     fun setup() {
-        When calling mockForwardIncomingSmsUseCase.execute(any()) itReturns Single.just(MockUtil.dataList)
-        viewModel = AllFiltersViewModelImpl(mockForwardIncomingSmsUseCase)
+        When calling mockForwardIncomingSmsUseCase.execute(any()) itReturns Single.just(Unit)
+        viewModel =
+            AllFiltersViewModelImpl(mockObserveIncomingSmsUseCase, mockForwardIncomingSmsUseCase)
     }
 
     @Test
