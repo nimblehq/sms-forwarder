@@ -12,23 +12,16 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
-interface AllFiltersViewModel {
-
-    fun getFilters()
-
-    fun navigateToFilterManager()
-}
-
 interface Input {
     fun refresh()
 }
 
-class AllFiltersViewModelImpl @ViewModelInject constructor(
+class AllFiltersViewModel @ViewModelInject constructor(
     private val observeIncomingSmsUseCase: ObserveIncomingSmsUseCase,
     private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase,
     private val observeFiltersUseCase: ObserveFiltersUseCase,
     private val getFiltersUseCase: GetFiltersUseCase
-) : BaseViewModel(), AllFiltersViewModel, Input {
+) : BaseViewModel(), Input {
 
     val input: Input = this
 
@@ -47,11 +40,11 @@ class AllFiltersViewModelImpl @ViewModelInject constructor(
         observeIncomingSms()
     }
 
-    override fun navigateToFilterManager() {
+    fun navigateToFilterManager() {
         _navigator.onNext(NavigationEvent.FilterManager)
     }
 
-    override fun getFilters() {
+    private fun getFilters() {
         getFiltersUseCase
             .execute(Unit)
             .doShowLoading()

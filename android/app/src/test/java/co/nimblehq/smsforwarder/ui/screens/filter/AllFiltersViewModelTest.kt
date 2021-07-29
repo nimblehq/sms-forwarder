@@ -11,7 +11,7 @@ import org.junit.Test
 
 class AllFiltersViewModelTest {
 
-    private lateinit var viewModel: AllFiltersViewModelImpl
+    private lateinit var viewModel: AllFiltersViewModel
     private val mockObserveIncomingSmsUseCase = mock<ObserveIncomingSmsUseCase>()
     private val mockForwardIncomingSmsUseCase = mock<ForwardIncomingSmsUseCase>()
 
@@ -19,7 +19,7 @@ class AllFiltersViewModelTest {
     fun setup() {
         When calling mockForwardIncomingSmsUseCase.execute(any()) itReturns Single.just(Unit)
         viewModel =
-            AllFiltersViewModelImpl(mockObserveIncomingSmsUseCase, mockForwardIncomingSmsUseCase)
+            AllFiltersViewModel(mockObserveIncomingSmsUseCase, mockForwardIncomingSmsUseCase)
     }
 
     @Test

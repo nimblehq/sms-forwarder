@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.databinding.FragmentAllFiltersBinding
 import co.nimblehq.smsforwarder.databinding.ViewLoadingBinding
-import co.nimblehq.smsforwarder.domain.data.Filter
 import co.nimblehq.smsforwarder.extension.visibleOrGone
 import co.nimblehq.smsforwarder.lib.IsLoading
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
@@ -31,7 +30,7 @@ class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
     @Inject
     lateinit var rxPermissions: RxPermissions
 
-    private val viewModel by viewModels<AllFiltersViewModelImpl>()
+    private val viewModel by viewModels<AllFiltersViewModel>()
 
     private lateinit var filterAdapter: FilterAdapter
     private lateinit var viewLoadingBinding: ViewLoadingBinding
