@@ -6,6 +6,15 @@ var express = require('express'),
   expressValidator = require('express-validator'),
   app = express();
 
+// basic authentication https://www.npmjs.com/package/express-basic-auth
+const basicAuth = require('express-basic-auth')
+app.use(basicAuth({
+  users: {
+    'admin': '123456'
+  },
+  challenge: true
+}))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -44,6 +53,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 // TODO Test code, will be updated in https://github.com/nimblehq/sms-forwarder/issues/54
 const User = require('./models').User;
