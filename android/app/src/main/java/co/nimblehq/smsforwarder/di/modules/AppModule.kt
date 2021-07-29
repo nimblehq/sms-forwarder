@@ -2,8 +2,10 @@ package co.nimblehq.smsforwarder.di.modules
 
 import android.content.Context
 import co.nimblehq.smsforwarder.IncomingSmsPersistenceImpl
+import co.nimblehq.smsforwarder.FiltersPersistenceImpl
 import co.nimblehq.smsforwarder.SmsForwarderApplication
 import co.nimblehq.smsforwarder.domain.persistence.IncomingSmsPersistence
+import co.nimblehq.smsforwarder.domain.persistence.FiltersPersistence
 import co.nimblehq.smsforwarder.domain.schedulers.BaseSchedulerProvider
 import co.nimblehq.smsforwarder.domain.schedulers.SchedulerProvider
 import co.nimblehq.smsforwarder.ui.common.Toaster
@@ -29,5 +31,11 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideIncomingSmsObservable(persistence: IncomingSmsPersistenceImpl): IncomingSmsPersistence = persistence
+    fun provideIncomingSmsPersistence(persistence: IncomingSmsPersistenceImpl): IncomingSmsPersistence =
+        persistence
+
+    @Provides
+    @Singleton
+    fun provideFiltersPersistence(persistence: FiltersPersistenceImpl): FiltersPersistence =
+        persistence
 }
