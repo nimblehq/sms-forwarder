@@ -23,6 +23,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="co.nimblehq.smsforwarder.ui.screens.home.HomeFragment"
+        android:label="@string/menu_all_filters"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -37,7 +38,14 @@
 
     <fragment
         android:id="@+id/filterFragment"
-        android:name="co.nimblehq.smsforwarder.ui.screens.second.FilterFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.filter.FilterFragment"
+        android:label="@string/menu_filter_management"
+        tools:layout="@layout/fragment_filter" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.history.HistoryFragment"
+        android:label="@string/menu_history"
         tools:layout="@layout/fragment_filter" />
 
     <fragment
