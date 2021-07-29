@@ -1,9 +1,9 @@
-package co.nimblehq.smsforwarder.ui.screens.filter
+package co.nimblehq.smsforwarder.ui.screens.filter.manager
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import co.nimblehq.smsforwarder.databinding.FragmentFilterBinding
+import co.nimblehq.smsforwarder.databinding.FragmentFilterManagerBinding
 import co.nimblehq.smsforwarder.extension.subscribeOnClick
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
@@ -12,16 +12,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FilterFragment : BaseFragment<FragmentFilterBinding>() {
+class FilterManagerFragment : BaseFragment<FragmentFilterManagerBinding>() {
 
     @Inject
     lateinit var navigator: MainNavigator
 
-    private val viewModel by viewModels<FilterViewModel>()
+    private val viewModel by viewModels<FilterManagerViewModel>()
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentFilterBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentFilterManagerBinding
         get() = { inflater, container, attachToParent ->
-            FragmentFilterBinding.inflate(inflater, container, attachToParent)
+            FragmentFilterManagerBinding.inflate(inflater, container, attachToParent)
         }
 
     override fun setupView() {

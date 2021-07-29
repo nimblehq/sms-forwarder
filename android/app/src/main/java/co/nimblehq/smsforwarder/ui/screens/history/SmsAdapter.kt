@@ -1,4 +1,4 @@
-package co.nimblehq.smsforwarder.ui.screens.home
+package co.nimblehq.smsforwarder.ui.screens.history
 
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView

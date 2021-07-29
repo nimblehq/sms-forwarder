@@ -11,6 +11,6 @@ interface LoginViewModel {
 class LoginViewModelImpl @ViewModelInject constructor() : BaseViewModel(), LoginViewModel {
 
     override fun navigateToFilter() {
-        _navigator.onNext(NavigationEvent.Home)
+        _navigator.onNext(NavigationEvent.AllFilters)
     }
 }

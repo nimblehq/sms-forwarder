@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:padding="@dimen/default_margin_16"
-    tools:showIn="@layout/fragment_home">
+    tools:showIn="@layout/fragment_all_filters">
 
     <ImageView
         android:id="@+id/ivSmsBullet"

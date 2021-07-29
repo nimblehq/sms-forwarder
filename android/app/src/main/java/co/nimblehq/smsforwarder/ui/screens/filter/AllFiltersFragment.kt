@@ -1,4 +1,4 @@
-package co.nimblehq.smsforwarder.ui.screens.home
+package co.nimblehq.smsforwarder.ui.screens.filter
 
 import android.Manifest
 import android.view.LayoutInflater
@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.*
 import co.nimblehq.smsforwarder.R
-import co.nimblehq.smsforwarder.databinding.FragmentHomeBinding
+import co.nimblehq.smsforwarder.databinding.FragmentAllFiltersBinding
 import co.nimblehq.smsforwarder.databinding.ViewLoadingBinding
 import co.nimblehq.smsforwarder.domain.data.Sms
-import co.nimblehq.smsforwarder.extension.*
+import co.nimblehq.smsforwarder.extension.subscribeOnClick
+import co.nimblehq.smsforwarder.extension.visibleOrGone
 import co.nimblehq.smsforwarder.lib.IsLoading
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
 
     @Inject
     lateinit var navigator: MainNavigator
@@ -29,14 +30,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     @Inject
     lateinit var rxPermissions: RxPermissions
 
-    private val viewModel by viewModels<HomeViewModelImpl>()
+    private val viewModel by viewModels<AllFiltersViewModelImpl>()
 
-    private lateinit var smsAdapter: SmsAdapter
+    private lateinit var filterAdapter: FilterAdapter
     private lateinit var viewLoadingBinding: ViewLoadingBinding
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAllFiltersBinding
         get() = { inflater, container, attachToParent ->
-            FragmentHomeBinding.inflate(inflater, container, attachToParent)
+            FragmentAllFiltersBinding.inflate(inflater, container, attachToParent)
         }
 
     override fun setupView() {
@@ -45,7 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewLoadingBinding = ViewLoadingBinding.bind(binding.root)
         setupDataList()
 
-        binding.btHomeAddFilter
+        binding.btAllFiltersAdd
             .subscribeOnClick { viewModel.navigateToFilter() }
             .addToDisposables()
     }
@@ -53,9 +54,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun handleVisualOverlaps() {
         with(binding) {
             listOf(
-                rvHomeSmsData,
-                vHomeBackground,
-                btHomeAddFilter
+                rvAllFiltersData,
+                vAllFiltersBackground,
+                btAllFiltersAdd
             ).forEach { it.handleVisualOverlaps() }
         }
     }
@@ -93,9 +94,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun setupDataList() {
-        with(binding.rvHomeSmsData) {
-            adapter = SmsAdapter().also {
-                smsAdapter = it
+        with(binding.rvAllFiltersData) {
+            adapter = FilterAdapter().also {
+                filterAdapter = it
             }
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(
@@ -108,11 +109,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun bindData(sms: List<Sms>) {
-        smsAdapter.items = sms
+        filterAdapter.items = sms
     }
 
     private fun showLoading(isLoading: IsLoading) {
-        binding.btHomeAddFilter.isEnabled = !isLoading
+        binding.btAllFiltersAdd.isEnabled = !isLoading
         viewLoadingBinding.pbLoading.visibleOrGone(isLoading)
     }
 
