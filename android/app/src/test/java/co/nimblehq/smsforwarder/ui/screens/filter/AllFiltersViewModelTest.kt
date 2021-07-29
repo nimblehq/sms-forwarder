@@ -26,7 +26,7 @@ class AllFiltersViewModelTest {
     fun `When navigating to Filter screen responds positive result, it emits the corresponding navigation event`() {
         val navigatorObserver = viewModel.navigator.test()
 
-        viewModel.navigateToFilter()
+        viewModel.navigateToFilterManager()
 
         navigatorObserver
             .assertValueCount(1)

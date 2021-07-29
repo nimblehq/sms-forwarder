@@ -7,36 +7,16 @@
     android:background="@drawable/bg_app"
     android:padding="@dimen/default_margin_16">
 
-    <View
-        android:id="@+id/vAllFiltersBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_home" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAllFiltersData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_margin_16"
         android:clipToPadding="false"
-        tools:listitem="@layout/item_sms" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_filter" />
 
     <!--  TODO: Add the empty case placeholder  -->
-
-    <android.widget.Button
-        android:id="@+id/btAllFiltersAdd"
-        android:layout_width="@dimen/home_add_filter_button_size"
-        android:layout_height="@dimen/home_add_filter_button_size"
-        android:layout_marginEnd="@dimen/default_margin_24"
-        android:layout_marginBottom="@dimen/default_margin_24"
-        android:background="@drawable/bg_circle_button"
-        android:includeFontPadding="false"
-        android:text="@string/home_add_filter_button"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_display_text_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <include layout="@layout/view_loading" />
 

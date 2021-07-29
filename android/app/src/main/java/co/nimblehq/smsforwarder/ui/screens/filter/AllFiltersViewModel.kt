@@ -1,8 +1,8 @@
 package co.nimblehq.smsforwarder.ui.screens.filter
 
 import androidx.hilt.lifecycle.ViewModelInject
+import co.nimblehq.smsforwarder.domain.data.Filter
 import co.nimblehq.smsforwarder.domain.data.IncomingSmsEntity
-import co.nimblehq.smsforwarder.domain.data.Sms
 import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
 import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
@@ -12,7 +12,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
 interface AllFiltersViewModel {
-    fun navigateToFilter()
+    fun navigateToFilterManager()
 }
 
 interface Input {
@@ -26,12 +26,28 @@ class AllFiltersViewModelImpl @ViewModelInject constructor(
 
     val input: Input = this
 
-    private val _data = BehaviorSubject.create<List<Sms>>()
-    val data: Observable<List<Sms>>
+    private val _data = BehaviorSubject.create<List<Filter>>()
+    val data: Observable<List<Filter>>
         get() = _data
 
     init {
         observeIncomingSms()
+        _data.onNext(
+            listOf(
+                Filter(
+                    sender = "Lydia",
+                    forwardEmailAddress = "lydia@test.com",
+                    forwardSlackChannel = "sms-forwarder",
+                    template = ""
+                ),
+                Filter(
+                    sender = "J.",
+                    forwardEmailAddress = "",
+                    forwardSlackChannel = "sms-forwarder",
+                    template = ""
+                )
+            )
+        )
     }
 
     // TODO Remove this
@@ -39,7 +55,7 @@ class AllFiltersViewModelImpl @ViewModelInject constructor(
         observeIncomingSms()
     }
 
-    override fun navigateToFilter() {
+    override fun navigateToFilterManager() {
         _navigator.onNext(NavigationEvent.FilterManager)
     }
 

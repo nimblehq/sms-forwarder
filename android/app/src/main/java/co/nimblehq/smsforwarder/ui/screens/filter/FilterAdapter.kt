@@ -2,8 +2,9 @@ package co.nimblehq.smsforwarder.ui.screens.filter
 
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
-import co.nimblehq.smsforwarder.databinding.ItemSmsBinding
-import co.nimblehq.smsforwarder.domain.data.Sms
+import co.nimblehq.smsforwarder.databinding.ItemFilterBinding
+import co.nimblehq.smsforwarder.domain.data.Filter
+import co.nimblehq.smsforwarder.extension.visibleOrGone
 import co.nimblehq.smsforwarder.ui.common.ItemClickable
 import co.nimblehq.smsforwarder.ui.common.ItemClickableImpl
 import kotlinx.android.extensions.LayoutContainer
@@ -12,7 +13,7 @@ internal class FilterAdapter :
     RecyclerView.Adapter<FilterAdapter.ViewHolder>(),
     ItemClickable<FilterAdapter.OnItemClick> by ItemClickableImpl() {
 
-    var items = listOf<Sms>()
+    var items = listOf<Filter>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -21,7 +22,7 @@ internal class FilterAdapter :
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemSmsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -30,7 +31,7 @@ internal class FilterAdapter :
     }
 
     internal inner class ViewHolder(
-        private val binding: ItemSmsBinding  // TODO: Update to ItemFilterBinging
+        private val binding: ItemFilterBinding
     ) : RecyclerView.ViewHolder(binding.root), LayoutContainer {
 
         override val containerView: View
@@ -42,12 +43,18 @@ internal class FilterAdapter :
             }
         }
 
-        fun bind(model: Sms) {
+        fun bind(model: Filter) {
             with(model) {
                 with(binding) {
-                    // TODO: update with the real data on the integrate task
-                    tvSmsProvider.text = "Sms Provider Name"
-                    tvSmsMessage.text = "Your OTP is 123456"
+                    tvFilterSender.text = sender
+                    tvFilterEmail.run {
+                        text = forwardEmailAddress
+                        visibleOrGone(forwardEmailAddress.isNotBlank())
+                    }
+                    tvFilterSlackChannel.run {
+                        text = forwardSlackChannel
+                        visibleOrGone(forwardSlackChannel.isNotBlank())
+                    }
                 }
             }
         }
@@ -55,6 +62,6 @@ internal class FilterAdapter :
 
     sealed class OnItemClick {
 
-        data class Item(val sms: Sms) : OnItemClick()
+        data class Item(val sms: Filter) : OnItemClick()
     }
 }

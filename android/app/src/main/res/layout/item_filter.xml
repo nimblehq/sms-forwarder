@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/white"
+    android:elevation="4dp"
+    android:theme="@style/Platform.MaterialComponents.Light"
+    app:cardCornerRadius="@dimen/default_card_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/default_margin_16"
+        tools:showIn="@layout/fragment_all_filters">
+
+        <TextView
+            style="Widget.Template.TextView.Bold"
+            android:id="@+id/tvFilterSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_display_text_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Sender Name" />
+
+        <TextView
+            style="Widget.Template.TextView"
+            android:id="@+id/tvFilterSlackChannel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_slack"
+            android:drawablePadding="@dimen/default_margin_8"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tvFilterSender"
+            app:layout_constraintStart_toStartOf="@id/tvFilterSender"
+            app:layout_constraintTop_toBottomOf="@id/tvFilterSender"
+            tools:text="Sender Email" />
+
+        <TextView
+            style="Widget.Template.TextView"
+            android:id="@+id/tvFilterEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="@dimen/default_margin_8"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvFilterSlackChannel"
+            tools:text="Sender Email" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

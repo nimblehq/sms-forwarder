@@ -1,14 +1,14 @@
 package co.nimblehq.smsforwarder.ui.screens.filter
 
 import android.Manifest
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.*
 import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.databinding.FragmentAllFiltersBinding
 import co.nimblehq.smsforwarder.databinding.ViewLoadingBinding
-import co.nimblehq.smsforwarder.domain.data.Sms
+import co.nimblehq.smsforwarder.domain.data.Filter
 import co.nimblehq.smsforwarder.extension.subscribeOnClick
 import co.nimblehq.smsforwarder.extension.visibleOrGone
 import co.nimblehq.smsforwarder.lib.IsLoading
@@ -19,6 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,29 +35,45 @@ class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
 
     private lateinit var filterAdapter: FilterAdapter
     private lateinit var viewLoadingBinding: ViewLoadingBinding
+    private var isLoading = false
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAllFiltersBinding
         get() = { inflater, container, attachToParent ->
             FragmentAllFiltersBinding.inflate(inflater, container, attachToParent)
         }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun setupView() {
         showAppBar()
 
         viewLoadingBinding = ViewLoadingBinding.bind(binding.root)
         setupDataList()
+    }
 
-        binding.btAllFiltersAdd
-            .subscribeOnClick { viewModel.navigateToFilter() }
-            .addToDisposables()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.add_filter_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.addFilter && !isLoading) {
+            viewModel.navigateToFilterManager()
+            return true
+        }
+        return false
     }
 
     override fun handleVisualOverlaps() {
         with(binding) {
             listOf(
-                rvAllFiltersData,
-                vAllFiltersBackground,
-                btAllFiltersAdd
+                rvAllFiltersData
             ).forEach { it.handleVisualOverlaps() }
         }
     }
@@ -98,7 +115,6 @@ class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
             adapter = FilterAdapter().also {
                 filterAdapter = it
             }
-            layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(
                 DividerItemDecoration(
                     context,
@@ -108,12 +124,13 @@ class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
         }
     }
 
-    private fun bindData(sms: List<Sms>) {
-        filterAdapter.items = sms
+    private fun bindData(filters: List<Filter>) {
+        Timber.d(filters.toString())
+        filterAdapter.items = filters
     }
 
     private fun showLoading(isLoading: IsLoading) {
-        binding.btAllFiltersAdd.isEnabled = !isLoading
+        this.isLoading = isLoading
         viewLoadingBinding.pbLoading.visibleOrGone(isLoading)
     }
 
