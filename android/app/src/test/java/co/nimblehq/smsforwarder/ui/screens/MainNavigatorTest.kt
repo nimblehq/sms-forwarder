@@ -32,7 +32,7 @@ class MainNavigatorTest {
     fun `When navigating to Home screen from Login screen, it navigates with actionLoginFragmentToHomeFragment`() {
         When calling mockDestination.id itReturns R.id.loginFragment
 
-        navigator.navigate(NavigationEvent.Home)
+        navigator.navigate(NavigationEvent.AllFilters)
 
         verify(mockNavController).navigate(
             LoginFragmentDirections.actionLoginFragmentToHomeFragment()
@@ -41,9 +41,9 @@ class MainNavigatorTest {
 
     @Test
     fun `When navigating to Filter screen from Home screen, it navigates with actionHomeFragmentToFilterFragment`() {
-        When calling mockDestination.id itReturns R.id.homeFragment
+        When calling mockDestination.id itReturns R.id.allFiltersFragment
 
-        navigator.navigate(NavigationEvent.Filter)
+        navigator.navigate(NavigationEvent.FilterManager)
 
         verify(mockNavController).navigate(
             HomeFragmentDirections.actionHomeFragmentToFilterFragment()

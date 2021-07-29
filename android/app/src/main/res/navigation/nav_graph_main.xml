@@ -11,8 +11,8 @@
         tools:layout="@layout/fragment_login">
 
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
+            android:id="@+id/action_loginFragment_to_allFiltersFragment"
+            app:destination="@id/allFiltersFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -21,14 +21,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="co.nimblehq.smsforwarder.ui.screens.home.HomeFragment"
+        android:id="@+id/allFiltersFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.filter.AllFiltersFragment"
         android:label="@string/menu_all_filters"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_all_filters">
 
         <action
-            android:id="@+id/action_homeFragment_to_filterFragment"
-            app:destination="@id/filterFragment"
+            android:id="@+id/action_allFiltersFragment_to_filterManagerFragment"
+            app:destination="@id/filterManagerFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -37,26 +37,15 @@
     </fragment>
 
     <fragment
-        android:id="@+id/filterFragment"
-        android:name="co.nimblehq.smsforwarder.ui.screens.filter.FilterFragment"
+        android:id="@+id/filterManagerFragment"
+        android:name="co.nimblehq.smsforwarder.ui.screens.filter.manager.FilterManagerFragment"
         android:label="@string/menu_filter_management"
-        tools:layout="@layout/fragment_filter" />
+        tools:layout="@layout/fragment_filter_manager" />
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="co.nimblehq.smsforwarder.ui.screens.history.HistoryFragment"
         android:label="@string/menu_history"
-        tools:layout="@layout/fragment_filter" />
-
-    <fragment
-        android:id="@+id/webViewFragment"
-        android:name="co.nimblehq.smsforwarder.ui.screens.webview.WebViewFragment"
-        tools:layout="@layout/fragment_webview">
-
-        <argument
-            android:name="bundle"
-            app:argType="co.nimblehq.smsforwarder.ui.screens.webview.WebViewBundle" />
-
-    </fragment>
+        tools:layout="@layout/fragment_filter_manager" />
 
 </navigation>

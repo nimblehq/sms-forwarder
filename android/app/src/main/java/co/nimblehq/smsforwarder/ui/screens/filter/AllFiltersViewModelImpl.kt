@@ -1,4 +1,4 @@
-package co.nimblehq.smsforwarder.ui.screens.home
+package co.nimblehq.smsforwarder.ui.screens.filter
 
 import androidx.hilt.lifecycle.ViewModelInject
 import co.nimblehq.smsforwarder.domain.data.IncomingSmsEntity
@@ -11,7 +11,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
-interface HomeViewModel {
+interface AllFiltersViewModel {
     fun navigateToFilter()
 }
 
@@ -19,10 +19,10 @@ interface Input {
     fun refresh()
 }
 
-class HomeViewModelImpl @ViewModelInject constructor(
+class AllFiltersViewModelImpl @ViewModelInject constructor(
     private val observeIncomingSmsUseCase: ObserveIncomingSmsUseCase,
     private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase
-) : BaseViewModel(), HomeViewModel, Input {
+) : BaseViewModel(), AllFiltersViewModel, Input {
 
     val input: Input = this
 
@@ -40,7 +40,7 @@ class HomeViewModelImpl @ViewModelInject constructor(
     }
 
     override fun navigateToFilter() {
-        _navigator.onNext(NavigationEvent.Filter)
+        _navigator.onNext(NavigationEvent.FilterManager)
     }
 
     private fun observeIncomingSms() {
