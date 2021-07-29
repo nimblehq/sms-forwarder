@@ -19,7 +19,7 @@ class FilterManagerFragment : BaseFragment<FragmentFilterManagerBinding>() {
     @Inject
     lateinit var navigator: MainNavigator
 
-    private val viewModel by viewModels<FilterManagerViewModel>()
+    private val viewModel by viewModels<FilterManagerViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +40,14 @@ class FilterManagerFragment : BaseFragment<FragmentFilterManagerBinding>() {
 
         with(binding) {
             btFilterSubmit
-                .subscribeOnClick(navigator::navigateUp)
+                .subscribeOnClick {
+                    viewModel.saveFilter(
+                        sender = binding.etFilterSendFromProviderName.text.toString(),
+                        smsTemplate = binding.etFilterSendFromTemplate.text.toString(),
+                        forwardEmail = binding.etFilterForwardToEmail.text.toString(),
+                        forwardSlackChannel = binding.etFilterForwardToSlack.text.toString(),
+                    )
+                }
                 .addToDisposables()
         }
     }
