@@ -6,7 +6,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/homeFragment"
+            android:id="@+id/allFiltersFragment"
             android:icon="@drawable/ic_list"
             android:title="@string/menu_all_filters" />
 

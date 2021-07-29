@@ -42,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         val drawerLayout: DrawerLayout? = findViewById(R.id.dlMain)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.historyFragment),
+            setOf(R.id.allFiltersFragment, R.id.historyFragment),
             drawerLayout
         )
 
