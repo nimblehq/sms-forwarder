@@ -8,6 +8,10 @@
     "monitor": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "10.17.0",
+    "npm": "6.11.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nimblehq/sms-forwarder.git"
