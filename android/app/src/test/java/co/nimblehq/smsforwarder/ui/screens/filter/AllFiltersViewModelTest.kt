@@ -3,6 +3,7 @@ package co.nimblehq.smsforwarder.ui.screens.filter
 import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
 import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
+import co.nimblehq.smsforwarder.ui.screens.filter.AllFiltersViewModelImpl
 import com.nhaarman.mockitokotlin2.any
 import io.reactivex.Single
 import org.amshove.kluent.*
