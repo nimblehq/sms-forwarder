@@ -18,7 +18,8 @@
             android:id="@+id/tbMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcvMain"

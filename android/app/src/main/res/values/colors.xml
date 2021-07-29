@@ -5,6 +5,9 @@
     <color name="colorPrimaryDark">@color/purple_violent_violet</color>
     <color name="colorAccent">@color/red_alizarin</color>
 
+    <color name="colorStatusBar">@null</color>
+    <color name="colorNavigationBar">@null</color>
+
     <color name="orange_red">#FA4616</color>
     <color name="purple_violent_violet">#201547</color>
     <color name="red_alizarin">#EE2737</color>
