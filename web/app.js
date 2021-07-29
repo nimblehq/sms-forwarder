@@ -12,6 +12,7 @@ const User = require('./models').User;
 const basicAuth = require('express-basic-auth')
 app.use(basicAuth({
   authorizer: asyncAuthorizer,
+  unauthorizedResponse: getUnauthorizedResponse,
   authorizeAsync: true,
   challenge: true
 }))
@@ -68,6 +69,20 @@ function asyncAuthorizer(username, password, callback) {
       return callback(null, false)
     }
   });
+}
+
+function getUnauthorizedResponse(req) {
+  return req.auth ?
+    buildFailedResponse('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected') :
+    buildFailedResponse('No credentials provided')
+}
+
+function buildFailedResponse(message) {
+  return {
+    message: message,
+    success: 0,
+    data: null
+  };
 }
 
 module.exports = app;
