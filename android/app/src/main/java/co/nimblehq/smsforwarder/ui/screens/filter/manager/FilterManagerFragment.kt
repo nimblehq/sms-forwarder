@@ -1,10 +1,12 @@
 package co.nimblehq.smsforwarder.ui.screens.filter.manager
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.viewModels
+import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.databinding.FragmentFilterManagerBinding
 import co.nimblehq.smsforwarder.extension.subscribeOnClick
+import co.nimblehq.smsforwarder.extension.toastShort
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
 import co.nimblehq.smsforwarder.ui.screens.MainNavigator
@@ -19,6 +21,15 @@ class FilterManagerFragment : BaseFragment<FragmentFilterManagerBinding>() {
 
     private val viewModel by viewModels<FilterManagerViewModel>()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentFilterManagerBinding
         get() = { inflater, container, attachToParent ->
             FragmentFilterManagerBinding.inflate(inflater, container, attachToParent)
@@ -32,6 +43,20 @@ class FilterManagerFragment : BaseFragment<FragmentFilterManagerBinding>() {
                 .subscribeOnClick(navigator::navigateUp)
                 .addToDisposables()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_filter_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.deleteFilter) {
+            // TODO: Implement delete filter
+            toastShort("Delete filter")
+            navigator.navigateUp()
+            return true
+        }
+        return false
     }
 
     override fun handleVisualOverlaps() {
