@@ -1,4 +1,4 @@
-https://github.com/nimblehq/git-template/issues/??
+https://github.com/nimblehq/sms-forwarder/issues/??
 
 ## What happened 👀
 
