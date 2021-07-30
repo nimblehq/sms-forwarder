@@ -1,0 +1,21 @@
+{
+  "static": {
+    "public": {
+      "local": {
+        "path": "APP_DIR/admin/custom/static",
+        "js": [
+          "/js/theme.js",
+          "/js/layouts/base.js"
+        ],
+        "css": []
+      },
+      "external": {
+        "css": [],
+        "js": []
+      }
+    }
+  },
+  "events": {
+    "events": "APP_DIR/admin/custom/events/base.js"
+  }
+}

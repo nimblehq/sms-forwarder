@@ -1,0 +1,10 @@
+{
+  "pg": {},
+  "app": {
+    "layouts": true,
+    "themes": true,
+    "languages": false,
+    "root": "/admin",
+    "maxUploadSize": 25
+  }
+}

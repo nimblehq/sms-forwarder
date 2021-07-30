@@ -13,6 +13,9 @@
     "database": "sms-forwarder",
     "host": "127.0.0.1",
     "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": false
+    },
     "charset": "utf8",
     "logging": false
   },
