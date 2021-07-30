@@ -11,4 +11,6 @@ interface FiltersPersistence {
     fun getAll(): Completable
 
     fun insert(filter: Filter): Completable
+
+    fun delete(id: Int): Completable
 }

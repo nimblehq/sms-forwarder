@@ -32,6 +32,13 @@ class FiltersPersistenceImpl @Inject constructor(
             .flatMapCompletable(this::update)
     }
 
+    override fun delete(id: Int): Completable {
+        return repository
+            .delete(id)
+            .andThen(repository.getAll())
+            .flatMapCompletable(this::update)
+    }
+
     private fun update(new: List<Filter>): Completable =
         Completable.fromAction {
             filtersSubject.onNext(new)

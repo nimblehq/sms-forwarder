@@ -38,5 +38,4 @@ class FilterManagerViewModel @ViewModelInject constructor(
             .execute(input)
             .doShowLoading()
     }
-
 }

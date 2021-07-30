@@ -10,8 +10,6 @@ class FilterManagerViewModelTest {
 
     @Before
     fun setup() {
-        managerViewModel = FilterManagerViewModel(
-            mock()
-        )
+        managerViewModel = FilterManagerViewModel(mock())
     }
 }

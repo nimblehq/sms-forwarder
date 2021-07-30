@@ -3,6 +3,7 @@ package co.nimblehq.smsforwarder.di.modules
 import android.content.Context
 import androidx.room.Room
 import co.nimblehq.smsforwarder.data.database.AppDatabase
+import co.nimblehq.smsforwarder.data.database.DB_NAME
 import co.nimblehq.smsforwarder.data.database.FiltersDao
 import co.nimblehq.smsforwarder.domain.repository.DatabaseRepository
 import co.nimblehq.smsforwarder.domain.repository.DatabaseRepositoryImpl
@@ -24,7 +25,7 @@ class DatabaseModule {
     ): AppDatabase {
         return Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "sms-forwarder.db"
+            AppDatabase::class.java, DB_NAME
         ).build()
     }
 
