@@ -2,6 +2,8 @@
 
 Building the application to install on Android devices with Thai mobile numbers and forward incoming SMS to the group of developers/PM on development
 
+![Nimble](/.github/banner.jpg)
+
 ## Features
 
 - Forward SMS to an email or Slack channel (webhook).
