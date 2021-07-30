@@ -5,6 +5,13 @@ apply plugin: 'kotlin-parcelize'
 apply from: '../config/jacoco.gradle'
 
 def globalConfig = rootProject.extensions.getByName("ext")
+def credentialConfig = rootProject.file("credential.properties")
+def credentialProperties = new Properties()
+credentialProperties.load(new FileInputStream(credentialConfig))
+
+def username = credentialProperties.getProperty("username")
+def password = credentialProperties.getProperty("password")
+
 android {
     compileSdkVersion globalConfig["android_compile_sdk_version"]
     defaultConfig {
@@ -12,6 +19,9 @@ android {
         targetSdkVersion globalConfig["android_target_sdk_version"]
         versionCode globalConfig["android_version_code"]
         versionName globalConfig["android_version_name"]
+
+        buildConfigField("String", "USERNAME", "\"${username}\"")
+        buildConfigField("String", "PASSWORD", "\"${password}\"")
     }
 
     flavorDimensions "stage"

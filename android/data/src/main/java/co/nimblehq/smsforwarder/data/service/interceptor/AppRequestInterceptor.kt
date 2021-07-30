@@ -1,6 +1,7 @@
 package co.nimblehq.smsforwarder.data.service.interceptor
 
 import android.util.Base64
+import co.nimblehq.smsforwarder.data.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -14,7 +15,12 @@ class AppRequestInterceptor : Interceptor {
         val originalRequest = chain.request().newBuilder()
 
         // TODO: Remove this when using OAuth2.0 authentication
-        val basicAuth = "Basic " + String(Base64.encode("user:pass".toByteArray(), Base64.NO_WRAP))
+        val basicAuth = "Basic " + String(
+            Base64.encode(
+                "${BuildConfig.USERNAME}:${BuildConfig.PASSWORD}".toByteArray(),
+                Base64.NO_WRAP
+            )
+        )
         originalRequest.header(HEADER_AUTHORIZATION, basicAuth)
 
         val afterIntercepted = originalRequest.build()
