@@ -7,8 +7,23 @@ module.exports = (sequelize, DataTypes) => {
     forwardEmailAddress: DataTypes.STRING,
     forwardSlackChannel: DataTypes.STRING
   }, {});
+
   Filter.associate = function (models) {
     // associations can be defined here
   };
+
+  Filter.findByUserId = function (userId, limit, offset) {
+    return Filter.findAll({
+      where: {
+        userId: userId
+      },
+      order: [
+        ['updatedAt', 'DESC']
+      ],
+      limit: limit,
+      offset: offset
+    })
+  }
+
   return Filter;
 };

@@ -7,6 +7,8 @@ let ApiExt = require('./api-ext');
 let mailer = require('../services/mailer');
 let slack = require('../services/slack');
 
+const Filter = require('../models').Filter;
+
 router.post('/v1/sms/forward', function (req, res) {
   req.checkBody('incoming_number').optional().len({
     min: 0,
@@ -47,26 +49,27 @@ router.post('/v1/sms/forward', function (req, res) {
 });
 
 router.get('/v1/filter/list', function (req, res) {
-  let data = [{
-    id: 1,
-    sender: "Apple",
-    template: "",
-    forwardEmailAddress: "lucas@nimblehq.co",
-    forwardSlackChannel: "https://hooks.slack.com/services/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"
-  }, {
-    id: 2,
-    sender: "Google",
-    template: "",
-    forwardEmailAddress: "hoang.l@nimblehq.co",
-    forwardSlackChannel: "https://hooks.slack.com/services/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"
-  }, {
-    id: 3,
-    sender: "Facebook",
-    template: "",
-    forwardEmailAddress: "runchana@nimblehq.co",
-    forwardSlackChannel: "https://hooks.slack.com/services/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"
-  }];
-  ApiExt.buildSuccessResponse(res, data);
+  // TODO get user from access token after implemting Oauth2
+  let userId = 2;
+  req.checkQuery('limit').isInt({
+    min: 1,
+    max: 100
+  });
+  req.checkQuery('offset').isInt({
+    min: 0
+  });
+
+  ApiExt.validateRequest(req, res, function () {
+    Filter
+      .findByUserId(userId, req.query.limit, req.query.offset)
+      .then(function (filters) {
+        if (filters) {
+          ApiExt.buildSuccessResponse(res, filters);
+        } else {
+          ApiExt.buildFailedResponse(res, "No filters yet.");
+        }
+      });
+  });
 });
 
 
