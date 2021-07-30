@@ -12,11 +12,11 @@ interface DatabaseRepository {
 
     fun getAll(): Single<List<Filter>>
 
-    fun replaceAll(vararg dto: FilterDto): Completable
+    fun replaceAll(filters: List<FilterDto>): Completable
 
-    fun insert(dto: FilterDto): Single<Long>
+    fun insert(filter: FilterDto): Single<Long>
 
-    fun insertAll(vararg dto: FilterDto): Completable
+    fun insertAll(filters: List<FilterDto>): Completable
 
     fun delete(id: Int): Completable
 
@@ -31,19 +31,19 @@ class DatabaseRepositoryImpl @Inject constructor(
         return dao.getAll().map { list -> list.map { it.toEntity() } }
     }
 
-    override fun replaceAll(vararg dto: FilterDto): Completable {
+    override fun replaceAll(filters: List<FilterDto>): Completable {
         return Completable.fromCallable {
-            dao.replaceAll(*dto)
+            dao.replaceAll(filters)
         }
     }
 
-    override fun insert(dto: FilterDto): Single<Long> {
-        return dao.insert(dto)
+    override fun insert(filter: FilterDto): Single<Long> {
+        return dao.insert(filter)
     }
 
-    override fun insertAll(vararg dto: FilterDto): Completable {
+    override fun insertAll(filters: List<FilterDto>): Completable {
         return Completable.fromCallable {
-            dao.insertAll(*dto)
+            dao.insertFilters(filters)
         }
     }
 

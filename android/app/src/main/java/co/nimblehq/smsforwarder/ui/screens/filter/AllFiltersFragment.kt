@@ -97,6 +97,7 @@ class AllFiltersFragment : BaseFragment<FragmentAllFiltersBinding>() {
         when {
             permission.granted -> {
                 // Granted
+                viewModel.getRemoteFilters()
             }
             permission.shouldShowRequestPermissionRationale -> {
                 // Deny

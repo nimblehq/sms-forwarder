@@ -1,11 +1,9 @@
 package co.nimblehq.smsforwarder.ui.screens.filter
 
 import androidx.hilt.lifecycle.ViewModelInject
+import co.nimblehq.smsforwarder.domain.data.Filter
 import co.nimblehq.smsforwarder.domain.data.IncomingSmsEntity
-import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
-import co.nimblehq.smsforwarder.domain.usecase.GetFiltersUseCase
-import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
-import co.nimblehq.smsforwarder.domain.usecase.ObserveFiltersUseCase
+import co.nimblehq.smsforwarder.domain.usecase.*
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
 import io.reactivex.Observable
@@ -20,7 +18,9 @@ class AllFiltersViewModel @ViewModelInject constructor(
     private val observeIncomingSmsUseCase: ObserveIncomingSmsUseCase,
     private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase,
     private val observeFiltersUseCase: ObserveFiltersUseCase,
-    private val getFiltersUseCase: GetFiltersUseCase
+    private val getLocalFiltersUseCase: GetLocalFiltersUseCase,
+    private val getRemoteFiltersUseCase: GetRemoteFiltersUseCase,
+    private val updateLocalFiltersUseCase: UpdateLocalFiltersUseCase
 ) : BaseViewModel(), Input {
 
     val input: Input = this
@@ -44,8 +44,31 @@ class AllFiltersViewModel @ViewModelInject constructor(
         _navigator.onNext(NavigationEvent.FilterManager)
     }
 
+    fun getRemoteFilters() {
+        getRemoteFiltersUseCase
+            .execute(
+                GetRemoteFiltersUseCase.Input()
+            )
+            .doShowLoading()
+            .subscribeBy(
+                onSuccess = ::updateLocalFilters,
+                onError = _error::onNext
+            )
+            .addToDisposables()
+    }
+
+    private fun updateLocalFilters(filters: List<Filter>) {
+        updateLocalFiltersUseCase
+            .execute(
+                UpdateLocalFiltersUseCase.Input(filters)
+            )
+            .doShowLoading()
+            .subscribe()
+            .addToDisposables()
+    }
+
     private fun getFilters() {
-        getFiltersUseCase
+        getLocalFiltersUseCase
             .execute(Unit)
             .doShowLoading()
             .subscribe()
@@ -72,12 +95,13 @@ class AllFiltersViewModel @ViewModelInject constructor(
     private fun forwardIncomingSmsIfMatchedFilter(entity: IncomingSmsEntity) {
         _data.value.orEmpty()
             .firstOrNull {
-                entity.incomingNumber == it.template
+                entity.incomingNumber.equals(it.sender, ignoreCase = true)
             }?.let {
                 val input = ForwardIncomingSmsUseCase.Input(
                     entity.incomingNumber,
                     entity.messageBody,
-                    it.forwardEmailAddress
+                    it.forwardEmailAddress,
+                    it.forwardSlackChannel
                 )
                 forwardIncomingSmsUseCase
                     .execute(input)

@@ -24,6 +24,13 @@ class FiltersPersistenceImpl @Inject constructor(
             .flatMapCompletable(this::update)
     }
 
+    override fun replaceAll(filters: List<Filter>): Completable {
+        return repository
+            .replaceAll(filters.map { it.toDto() })
+            .andThen(repository.getAll())
+            .flatMapCompletable(this::update)
+    }
+
     override fun insert(filter: Filter): Completable {
         return repository
             .insert(filter.toDto())

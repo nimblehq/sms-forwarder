@@ -1,7 +1,6 @@
 package co.nimblehq.smsforwarder.data.database
 
 import androidx.room.*
-import io.reactivex.Completable
 import io.reactivex.Single
 
 @Dao
@@ -11,16 +10,16 @@ interface FiltersDao {
     fun getAll(): Single<List<FilterDto>>
 
     @Transaction
-    fun replaceAll(vararg filter: FilterDto) {
+    fun replaceAll(filters: List<FilterDto>) {
         deleteAll()
-        insertAll(*filter)
+        insertFilters(filters)
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(filter: FilterDto): Single<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg filter: FilterDto)
+    fun insertFilters(filter: List<FilterDto>)
 
     @Query("DELETE FROM $SMS_FILTERING_TABLE_NAME WHERE id = :id")
     fun deleteById(id: Int)
