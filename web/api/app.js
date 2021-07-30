@@ -46,6 +46,30 @@ router.post('/v1/sms/forward', function (req, res) {
   });
 });
 
+router.get('/v1/filter/list', function (req, res) {
+  let data = [{
+    id: 1,
+    sender: "Apple",
+    template: "",
+    forwardEmailAddress: "lucas@nimblehq.co",
+    forwardSlackChannel: "https://hooks.slack.com/services/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"
+  }, {
+    id: 2,
+    sender: "Google",
+    template: "",
+    forwardEmailAddress: "hoang.l@nimblehq.co",
+    forwardSlackChannel: "https://hooks.slack.com/services/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"
+  }, {
+    id: 3,
+    sender: "Facebook",
+    template: "",
+    forwardEmailAddress: "runchana@nimblehq.co",
+    forwardSlackChannel: "https://hooks.slack.com/services/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"
+  }];
+  ApiExt.buildSuccessResponse(res, data);
+});
+
+
 function forwardToSlack(res, emailError, slackWebhookUrl, incomingNumber, messageBody) {
   slack.sendMessage(slackWebhookUrl, incomingNumber, messageBody, function (error) {
     if (error) {
@@ -57,7 +81,7 @@ function forwardToSlack(res, emailError, slackWebhookUrl, incomingNumber, messag
 
 function buildResponse(res, emailError, slackApiErr) {
   var error;
-  if(emailError) error = emailError
+  if (emailError) error = emailError
   else error = slackApiErr;
 
   if (error) {
