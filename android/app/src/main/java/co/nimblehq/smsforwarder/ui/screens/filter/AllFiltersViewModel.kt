@@ -1,53 +1,38 @@
 package co.nimblehq.smsforwarder.ui.screens.filter
 
 import androidx.hilt.lifecycle.ViewModelInject
-import co.nimblehq.smsforwarder.domain.data.Filter
 import co.nimblehq.smsforwarder.domain.data.IncomingSmsEntity
 import co.nimblehq.smsforwarder.domain.usecase.ForwardIncomingSmsUseCase
+import co.nimblehq.smsforwarder.domain.usecase.GetFiltersUseCase
 import co.nimblehq.smsforwarder.domain.usecase.ObserveIncomingSmsUseCase
+import co.nimblehq.smsforwarder.domain.usecase.ObserveFiltersUseCase
 import co.nimblehq.smsforwarder.ui.base.BaseViewModel
 import co.nimblehq.smsforwarder.ui.base.NavigationEvent
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
-interface AllFiltersViewModel {
-    fun navigateToFilterManager()
-}
-
 interface Input {
     fun refresh()
 }
 
-class AllFiltersViewModelImpl @ViewModelInject constructor(
+class AllFiltersViewModel @ViewModelInject constructor(
     private val observeIncomingSmsUseCase: ObserveIncomingSmsUseCase,
-    private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase
-) : BaseViewModel(), AllFiltersViewModel, Input {
+    private val forwardIncomingSmsUseCase: ForwardIncomingSmsUseCase,
+    private val observeFiltersUseCase: ObserveFiltersUseCase,
+    private val getFiltersUseCase: GetFiltersUseCase
+) : BaseViewModel(), Input {
 
     val input: Input = this
 
-    private val _data = BehaviorSubject.create<List<Filter>>()
-    val data: Observable<List<Filter>>
+    private val _data = BehaviorSubject.create<List<FilterUiModel>>()
+    val data: Observable<List<FilterUiModel>>
         get() = _data
 
     init {
+        observeFilters()
+        getFilters()
         observeIncomingSms()
-        _data.onNext(
-            listOf(
-                Filter(
-                    sender = "Lydia",
-                    forwardEmailAddress = "lydia@test.com",
-                    forwardSlackChannel = "sms-forwarder",
-                    template = ""
-                ),
-                Filter(
-                    sender = "J.",
-                    forwardEmailAddress = "",
-                    forwardSlackChannel = "sms-forwarder",
-                    template = ""
-                )
-            )
-        )
     }
 
     // TODO Remove this
@@ -55,32 +40,53 @@ class AllFiltersViewModelImpl @ViewModelInject constructor(
         observeIncomingSms()
     }
 
-    override fun navigateToFilterManager() {
+    fun navigateToFilterManager() {
         _navigator.onNext(NavigationEvent.FilterManager)
+    }
+
+    private fun getFilters() {
+        getFiltersUseCase
+            .execute(Unit)
+            .doShowLoading()
+            .subscribe()
+            .addToDisposables()
     }
 
     private fun observeIncomingSms() {
         observeIncomingSmsUseCase
             .execute(Unit)
-            .subscribe {
-                forwardIncomingSms(it)
-            }
+            .subscribe(::forwardIncomingSmsIfMatchedFilter)
             .addToDisposables()
     }
 
-    private fun forwardIncomingSms(entity: IncomingSmsEntity) {
-        val input = ForwardIncomingSmsUseCase.Input(
-            entity.incomingNumber,
-            entity.messageBody,
-            "hoang.l@nimblehq.co" // FIXME
-        )
-        forwardIncomingSmsUseCase
-            .execute(input)
-            .doShowLoading()
-            .subscribeBy(
-                onSuccess = {},
-                onError = _error::onNext
-            )
+    private fun observeFilters() {
+        observeFiltersUseCase
+            .execute(Unit)
+            .map { filters ->
+                filters.map { item -> item.toUiModel() }
+            }
+            .subscribe(_data::onNext)
             .addToDisposables()
+    }
+
+    private fun forwardIncomingSmsIfMatchedFilter(entity: IncomingSmsEntity) {
+        _data.value.orEmpty()
+            .firstOrNull {
+                entity.incomingNumber == it.template
+            }?.let {
+                val input = ForwardIncomingSmsUseCase.Input(
+                    entity.incomingNumber,
+                    entity.messageBody,
+                    it.forwardEmailAddress
+                )
+                forwardIncomingSmsUseCase
+                    .execute(input)
+                    .doShowLoading()
+                    .subscribeBy(
+                        onSuccess = {},
+                        onError = _error::onNext
+                    )
+                    .addToDisposables()
+            }
     }
 }

@@ -13,7 +13,7 @@ internal class FilterAdapter :
     RecyclerView.Adapter<FilterAdapter.ViewHolder>(),
     ItemClickable<FilterAdapter.OnItemClick> by ItemClickableImpl() {
 
-    var items = listOf<Filter>()
+    var items = listOf<FilterUiModel>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -43,7 +43,7 @@ internal class FilterAdapter :
             }
         }
 
-        fun bind(model: Filter) {
+        fun bind(model: FilterUiModel) {
             with(model) {
                 with(binding) {
                     tvFilterSender.text = sender
@@ -62,6 +62,6 @@ internal class FilterAdapter :
 
     sealed class OnItemClick {
 
-        data class Item(val sms: Filter) : OnItemClick()
+        data class Item(val filter: FilterUiModel) : OnItemClick()
     }
 }

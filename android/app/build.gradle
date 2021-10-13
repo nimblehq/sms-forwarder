@@ -117,7 +117,8 @@ dependencies {
         "androidx.hilt:hilt-compiler:$hilt_androidx_version",
         "androidx.lifecycle:lifecycle-compiler:$android_lifecycle_version",
         "com.github.bumptech.glide:compiler:$glide_version",
-        "com.google.dagger:hilt-android-compiler:$hilt_version"
+        "com.google.dagger:hilt-android-compiler:$hilt_version",
+        "androidx.room:room-compiler:$android_room_version"
     )
 
     implementation(
@@ -130,6 +131,10 @@ dependencies {
         "androidx.recyclerview:recyclerview:$android_support_version",
         "com.google.android.material:material:$android_material_version",
         "androidx.constraintlayout:constraintlayout:$constraint_layout_version",
+
+        "androidx.room:room-runtime:$android_room_version",
+        "androidx.room:room-ktx:$android_room_version",
+        "androidx.room:room-rxjava2:$android_room_version",
 
         "androidx.navigation:navigation-runtime-ktx:$navigation_version",
         "androidx.navigation:navigation-fragment-ktx:$navigation_version",
@@ -154,6 +159,8 @@ dependencies {
         "com.github.bumptech.glide:glide:$glide_version",
         "com.github.tbruyelle:rxpermissions:$rxpermission_version"
     )
+
+    annotationProcessor "androidx.room:room-compiler:$android_room_version"
 
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_interceptor_version"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_interceptor_version"
