@@ -6,12 +6,7 @@ import androidx.fragment.app.viewModels
 import co.nimblehq.smsforwarder.R
 import co.nimblehq.smsforwarder.databinding.FragmentFilterManagerBinding
 import co.nimblehq.smsforwarder.databinding.ViewLoadingBinding
-import co.nimblehq.smsforwarder.extension.hideSoftKeyboard
-import co.nimblehq.smsforwarder.extension.subscribeOnClick
-import co.nimblehq.smsforwarder.extension.toastShort
-import co.nimblehq.smsforwarder.extension.visibleOrGone
-import co.nimblehq.smsforwarder.lib.IsLoading
-import co.nimblehq.smsforwarder.extension.visibleOrGone
+import co.nimblehq.smsforwarder.extension.*
 import co.nimblehq.smsforwarder.lib.IsLoading
 import co.nimblehq.smsforwarder.ui.base.BaseFragment
 import co.nimblehq.smsforwarder.ui.helpers.handleVisualOverlaps
