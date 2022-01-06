@@ -6,6 +6,17 @@ var express = require('express'),
   expressValidator = require('express-validator'),
   app = express();
 
+const User = require('./models').User;
+
+// basic authentication https://www.npmjs.com/package/express-basic-auth
+const basicAuth = require('express-basic-auth')
+app.use(basicAuth({
+  authorizer: asyncAuthorizer,
+  unauthorizedResponse: getUnauthorizedResponse,
+  authorizeAsync: true,
+  challenge: true
+}))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -45,10 +56,33 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// TODO Test code, will be updated in https://github.com/nimblehq/sms-forwarder/issues/54
-const User = require('./models').User;
-User.findAll().then(function (users) {
-  console.log(users.length);
-});
+function asyncAuthorizer(username, password, callback) {
+  User.findOne({
+    where: {
+      username: username,
+      password: password
+    }
+  }).then(function (user) {
+    if (user) {
+      return callback(null, true)
+    } else {
+      return callback(null, false)
+    }
+  });
+}
+
+function getUnauthorizedResponse(req) {
+  return req.auth ?
+    buildFailedResponse('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected') :
+    buildFailedResponse('No credentials provided')
+}
+
+function buildFailedResponse(message) {
+  return {
+    message: message,
+    success: 0,
+    data: null
+  };
+}
 
 module.exports = app;
