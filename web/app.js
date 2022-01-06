@@ -45,4 +45,10 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+// TODO Test code, will be updated in https://github.com/nimblehq/sms-forwarder/issues/54
+const User = require('./models').User;
+User.findAll().then(function (users) {
+  console.log(users.length);
+});
+
 module.exports = app;
