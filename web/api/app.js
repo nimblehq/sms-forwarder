@@ -7,6 +7,8 @@ let ApiExt = require('./api-ext');
 let mailer = require('../services/mailer');
 let slack = require('../services/slack');
 
+const Filter = require('../models').Filter;
+
 router.post('/v1/sms/forward', function (req, res) {
   req.checkBody('incoming_number').optional().len({
     min: 0,
@@ -46,6 +48,31 @@ router.post('/v1/sms/forward', function (req, res) {
   });
 });
 
+router.get('/v1/filter/list', function (req, res) {
+  // TODO get user from access token after implemting Oauth2
+  let userId = 2;
+  req.checkQuery('limit').isInt({
+    min: 1,
+    max: 100
+  });
+  req.checkQuery('offset').isInt({
+    min: 0
+  });
+
+  ApiExt.validateRequest(req, res, function () {
+    Filter
+      .findByUserId(userId, req.query.limit, req.query.offset)
+      .then(function (filters) {
+        if (filters) {
+          ApiExt.buildSuccessResponse(res, filters);
+        } else {
+          ApiExt.buildFailedResponse(res, "No filters yet.");
+        }
+      });
+  });
+});
+
+
 function forwardToSlack(res, emailError, slackWebhookUrl, incomingNumber, messageBody) {
   slack.sendMessage(slackWebhookUrl, incomingNumber, messageBody, function (error) {
     if (error) {
@@ -57,7 +84,7 @@ function forwardToSlack(res, emailError, slackWebhookUrl, incomingNumber, messag
 
 function buildResponse(res, emailError, slackApiErr) {
   var error;
-  if(emailError) error = emailError
+  if (emailError) error = emailError
   else error = slackApiErr;
 
   if (error) {
